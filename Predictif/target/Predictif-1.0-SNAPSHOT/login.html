@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Connexion</title>
+        <title>PREDICT'IF - Connexion</title>
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     </head>
@@ -55,9 +55,11 @@
                             
                             let utilisateur = response.utilisateur;
                             $('#infosConnexion').html("Connexion de " + utilisateur.prenom + " " + utilisateur.nom + " (ID " + utilisateur.id + ")");
+                            window.location = 'employe.html?id=' + utilisateur.id;
                         }
                         else {
                             $('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification
+                            $('#infosConnexion').html("");
                         }
                     })
                     .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX

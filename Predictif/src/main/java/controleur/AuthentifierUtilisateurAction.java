@@ -32,11 +32,9 @@ public class AuthentifierUtilisateurAction extends Action {
        
        
         if(employe != null && login.equals(employe.getMail()) && password.equals(employe.getMotDePasse())){
-            System.out.println("if");
             request.setAttribute("utilisateur", employe);
         }
         else{
-            System.out.println("Else : " + employe);
             request.setAttribute("utilisateur", null);
         }
      

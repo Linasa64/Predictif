@@ -77,20 +77,25 @@ public class ActionServlet extends HttpServlet {
             switch (param) {
                 case "connecter" :
                     System.out.println("Test1");
-                    AuthentifierUtilisateurAction a = new AuthentifierUtilisateurAction();
-                    a.executer(request);
+                    AuthentifierUtilisateurAction a1 = new AuthentifierUtilisateurAction();
+                    a1.executer(request);
                     System.out.println("Test2");
-                    ProfilUtilisateurSerialisation s = new ProfilUtilisateurSerialisation();
+                    ProfilUtilisateurSerialisation s1 = new ProfilUtilisateurSerialisation();
                     System.out.println("Test3");
-                    s.serialiser(request, response);
+                    s1.serialiser(request, response);
                     System.out.println("Test4");
+                    break;
+                case "profilEmploye" :
+                    TrouverEmployeAction a2 = new TrouverEmployeAction();
+                    a2.executer(request);
+                    ProfilUtilisateurSerialisation s2 = new ProfilUtilisateurSerialisation();
+                    s2.serialiser(request, response);
                     break;
                 default :
                     System.out.println("Paramètre erroné");
                     
             }
 
-            
 //            out.println("</body>");
 //            out.println("</html>");
         }

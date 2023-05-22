@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PREDICT'IF - Employé</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Librairie Javascript: jQuery (v3.4.1) -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    </head>
+    <body>
+        <h1>Bonjour employé, votre id est <span id="idEmploye"></span></h1> 
+        <h2>Profil : </h2>
+        <p>Nom : <span id="nom"></span></p>
+        <p>Prénom : <span id="prenom"></span></p>
+        <p>Adresse mail : <span id="mail"></span></p>
+
+        <script>
+
+            function initDonneesPage() {
+                var idEmploye = (new URLSearchParams(window.location.search)).get('id');
+                console.log('ID de l\'employé connecté:', idEmploye);
+                $('#idEmploye').html(idEmploye); // Message pour le paragraphe de notification
+
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'profilEmploye',
+                        idEmploye: idEmploye,
+                    },
+                    dataType: 'json'
+                })
+                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            let employe = response.utilisateur;
+
+                            $('#nom').html(employe.nom);
+                            $('#prenom').html(employe.prenom);
+                            $('#mail').html(employe.mail);
+
+                        })
+            }
+            $(document).ready(function () {
+                initDonneesPage();
+            }
+            );
+        </script>
+    </body>
+</html>

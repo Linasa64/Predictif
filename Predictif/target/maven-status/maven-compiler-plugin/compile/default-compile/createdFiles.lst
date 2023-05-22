@@ -1,6 +1,6 @@
+controleur\ActionServlet.class
+modele\TestUtilisateur.class
 vue\ProfilUtilisateurSerialisation.class
 controleur\AuthentifierUtilisateurAction.class
 controleur\Action.class
-controleur\ActionServlet.class
-modele\TestUtilisateur.class
 vue\Serialisation.class
