@@ -16,16 +16,11 @@
         <script>
 
             function initDonneesPage() {
-                var idEmploye = (new URLSearchParams(window.location.search)).get('id');
-                console.log('ID de l\'employé connecté:', idEmploye);
-                $('#idEmploye').html(idEmploye); // Message pour le paragraphe de notification
-
                 $.ajax({
                     url: './ActionServlet',
                     method: 'POST',
                     data: {
-                        todo: 'profilEmploye',
-                        idEmploye: idEmploye,
+                        todo: 'employeConnecte'
                     },
                     dataType: 'json'
                 })
@@ -35,9 +30,14 @@
                             $('#nom').html(employe.nom);
                             $('#prenom').html(employe.prenom);
                             $('#mail').html(employe.mail);
-
+                            $('#idEmploye').html(employe.id);
+                            console.log('ID de l\'employé connecté:', employe.id);
                         })
+                //var idEmploye = (new URLSearchParams(window.location.search)).get('id');
+                
+
             }
+            
             $(document).ready(function () {
                 initDonneesPage();
             }

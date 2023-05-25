@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import vue.InscriptionClientSerialisation;
 import vue.ProfilUtilisateurSerialisation;
 
  
@@ -85,12 +86,38 @@ public class ActionServlet extends HttpServlet {
                     s1.serialiser(request, response);
                     System.out.println("Test4");
                     break;
-                case "profilEmploye" :
-                    TrouverEmployeAction a2 = new TrouverEmployeAction();
+                case "employeConnecte" :
+                    RetrouverSessionEmployeAction a2 = new RetrouverSessionEmployeAction();
                     a2.executer(request);
                     ProfilUtilisateurSerialisation s2 = new ProfilUtilisateurSerialisation();
                     s2.serialiser(request, response);
                     break;
+                case "clientConnecte" :
+                    System.out.println("Test type client request avant: " + request.getAttribute("type"));
+                    RetrouverSessionClientAction a3 = new RetrouverSessionClientAction();
+                    a3.executer(request);
+                    ProfilUtilisateurSerialisation s3 = new ProfilUtilisateurSerialisation();
+                    System.out.println("Test type client request apres: " + request.getAttribute("type"));
+                    s3.serialiser(request, response);
+                    
+                    break;
+                    
+                case "profilEmploye" :
+                    TrouverEmployeAction a4 = new TrouverEmployeAction();
+                    a4.executer(request);
+                    ProfilUtilisateurSerialisation s4 = new ProfilUtilisateurSerialisation();
+                    s4.serialiser(request, response);
+                    break;
+                    
+                case "inscriptionClient" :
+                    System.out.println("Bonjour de inscription");
+                    InscriptionClientAction a5 = new InscriptionClientAction();
+                    a5.executer(request);
+                    System.out.println("Fin de inscription");
+                    InscriptionClientSerialisation s5 = new InscriptionClientSerialisation();
+                    s5.serialiser(request, response);
+                    break;
+                    
                 default :
                     System.out.println("Paramètre erroné");
                     

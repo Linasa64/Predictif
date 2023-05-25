@@ -2,11 +2,91 @@
 <html>
     <head>
         <title>PREDICT'IF - Inscription</title>
+        <!-- Librairie Javascript: jQuery (v3.4.1) -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
         <h1>Inscription</h1>
         <p>Inscrivez-vous :)</p>
+        <p id="notification"></p>
+        <!-- Champs et Bouton de Formulaire -->
+        Prénom: <input type="text" id="champ-prenom" size="40" />
+        <br/>
+        Nom: <input type="text" id="champ-nom" />
+        <br/>
+        Date de naissance: <input type="date" id="champ-date-de-naissance" />
+        <br/>
+        Adresse Postale: <input type="text" id="champ-adresse" />
+        <br/>
+        Télephone: <input type="text" id="champ-telephone" />
+        <br/>
+        Adresse Mail: <input type="text" id="champ-mail" />
+        <br/>
+        Mot de passe: <input type="password" id="champ-mdp" />
+        <br/>
+        <button id="bouton-inscription">S'incrire</button>
+        
         <p><a href="index.html">Retour accueil</a></p>
+        
+        <script>
+            $(document).ready( function () {
+                $('#bouton-inscription').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
+
+                    console.log("clic sur le bouton de inscription"); // LOG dans Console Javascript
+                    $('#notification').html("inscription..."); // Message pour le paragraphe de notification
+
+                    // Récupération de la valeur des champs du formulaire
+                    var champNom = $('#champ-nom').val();
+                    var champPrenom = $('#champ-prenom').val();
+                    var champDate = $('#champ-date-de-naissance').val();
+                    var champAdresse = $('#champ-adresse').val();
+                    var champTelephone = $('#champ-telephone').val();
+                    var champMail = $('#champ-mail').val();
+                    var champMdp = $('#champ-mdp').val();
+
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'inscriptionClient',
+                            nom : champNom,
+                            prenom : champPrenom,
+                            date : champDate,
+                            adresse : champAdresse,
+                            telephone : champTelephone,
+                            mail : champMail,
+                            mdp : champMdp
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.inscription) {
+                            $('#notification').html("Inscription OK");  // Message pour le paragraphe de notification
+                            // TODO: afficher les informations du client dans la notification
+                            // Exemple: Connexion de Ada Lovelace (ID 1)
+                            
+                            //let utilisateur = response.utilisateur;
+                            //$('#infosConnexion').html("Connexion de " + utilisateur.prenom + " " + utilisateur.nom + " (ID " + utilisateur.id + ")");
+                            //window.location = 'employe.html';
+                            
+                        }
+                        else {
+                            $('#notification').html("Erreur de inscriptionClient"); // Message pour le paragraphe de notification
+                            //$('#infosConnexion').html("");
+                        }
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        
+                    });
+                });
+            });
+        </script>
     </body>
 </html>

@@ -3,4 +3,5 @@ modele\TestUtilisateur.class
 vue\ProfilUtilisateurSerialisation.class
 controleur\AuthentifierUtilisateurAction.class
 controleur\Action.class
+controleur\TrouverEmployeAction.class
 vue\Serialisation.class

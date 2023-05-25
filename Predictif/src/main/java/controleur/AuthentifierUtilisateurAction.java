@@ -6,6 +6,8 @@
 package controleur;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import metier.modele.Client;
 import metier.modele.Employe;
 import metier.service.Service;
 import modele.TestUtilisateur;
@@ -33,9 +35,22 @@ public class AuthentifierUtilisateurAction extends Action {
        
         if(employe != null && login.equals(employe.getMail()) && password.equals(employe.getMotDePasse())){
             request.setAttribute("utilisateur", employe);
+            HttpSession session = request.getSession(true);
+            session.setAttribute("idSession", employe.getId());
+            request.setAttribute("type", "employe");
         }
         else{
-            request.setAttribute("utilisateur", null);
+            Client client = service.authentifierClientParMail(login, password);
+            if(client != null && login.equals(client.getMail()) && password.equals(client.getMotDePasse())){
+                request.setAttribute("utilisateur", client);
+                HttpSession session = request.getSession(true);
+                session.setAttribute("idSession", client.getId());
+                request.setAttribute("type", "client");
+                System.out.println("Type client:" + request.getAttribute("type"));
+            }
+            else{
+                request.setAttribute("utilisateur", null);
+            }
         }
      
         return;

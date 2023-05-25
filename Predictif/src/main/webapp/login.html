@@ -55,7 +55,16 @@
                             
                             let utilisateur = response.utilisateur;
                             $('#infosConnexion').html("Connexion de " + utilisateur.prenom + " " + utilisateur.nom + " (ID " + utilisateur.id + ")");
-                            window.location = 'employe.html?id=' + utilisateur.id;
+                            
+                            console.log("type : ", response.type);
+                            if(response.type=="employe"){
+                                window.location = 'employe.html';
+                            }
+                            else if(response.type=="client"){
+                                window.location = 'client.html';
+                            }
+                            
+                            
                         }
                         else {
                             $('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification

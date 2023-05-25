@@ -105,7 +105,7 @@ public class Service {
             System.out.println("Authentification par mail succès!");
             JpaUtil.fermerContextePersistance();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            //ex.printStackTrace();
             JpaUtil.annulerTransaction();
             System.out.println("Authentification par mail échec!");
             JpaUtil.fermerContextePersistance();
@@ -127,7 +127,7 @@ public class Service {
             System.out.println("Authentification par mail succès!");
             JpaUtil.fermerContextePersistance();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            //ex.printStackTrace();
             JpaUtil.annulerTransaction();
             System.out.println("Authentification par mail échec!");
             JpaUtil.fermerContextePersistance();
@@ -150,7 +150,7 @@ public class Service {
             System.out.println("Authentification par id succès!");
             JpaUtil.fermerContextePersistance();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            //ex.printStackTrace();
             JpaUtil.annulerTransaction();
             System.out.println("Authentification par id échec!");
             JpaUtil.fermerContextePersistance();
@@ -172,7 +172,7 @@ public class Service {
             System.out.println("Authentification par id succès!");
             JpaUtil.fermerContextePersistance();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            //ex.printStackTrace();
             JpaUtil.annulerTransaction();
             System.out.println("Authentification par id échec!");
             JpaUtil.fermerContextePersistance();
