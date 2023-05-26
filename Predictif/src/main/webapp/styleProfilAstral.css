@@ -1,76 +1,193 @@
 body {
-  margin-top: 35px;
-  background: black;
-  color: white;
+    margin-top: 70px;
+    background: black;
+    color: white;
+
+    font-family: Arial, sans-serif;
+    font-family: Verdana, sans-serif;
+    font-family: 'Maven Pro';
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+b {
+    font-weight: bolder; /* Black (Heavy) */
 }
 
 nav {
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 35px;
-  background-color: blueviolet;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #db9af4;
 }
 
 nav ul {
-  list-style: none;
-  margin: 0;
-  padding: .2em 2em;
-  float: right;
+    list-style: none;
+    margin: 0;
+    padding: .2em 2em;
+    float: right;
 }
 
 nav ul li {
-  display: inline-block;
-  margin: 0;
-  padding: .2em .7em;
+    display: inline-block;
+    margin: 0;
+    padding: .5em .7em;
 }
 
 nav a {
-  width: 100%;
-  height: 100%;
-  color: white;
-  text-decoration: none;
-  font-family: Ubuntu;
-  font-size: 1.15em;
-  font-weight: lighter;
-  letter-spacing: 1px;
-  transition: .25s ease-in-out;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: .25s ease-in-out;
 }
 
 nav a:hover {
-  color: rgb(220, 120, 0);
+    color: #db9af4;
 }
 
 .nav-bg {
-  content: '';
-  position: absolute;
-  display: block;
-  top: -100%;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background: rgb(50, 50, 50);
-  transition: .45s ease-in-out;
+    content: '';
+    position: absolute;
+    display: block;
+    top: -100%;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: rgb(50, 50, 50);
+    transition: .45s ease-in-out;
 }
 
-
-#profil {
-  display: flex;
-  width: 100%;
-}
 
 #profilAstral, #profilClient {
-  flex: 1;
-  margin: 10px;
-  margin-top: 3vh;
+    flex: 1;
+    margin: 10px;
+    margin-top: 3vh;
+    border: 2px solid red;
 }
 
 #profilAstral, #profilClient:first-child {
-  margin-right: 20px;
+    margin-right: 20px;
 }
 
 #profilClient{
     display : none;
+}
+
+.titre{
+    text-align: center;
+}
+
+h1 {
+    font-size: 30px; /* Modifie la taille de la police */
+    font-weight: normal;
+    text-align: center; /* Centre le texte horizontalement */
+    text-transform:uppercase
+}
+
+#profil {
+    display: flex;
+    justify-content: center; /* Centre les éléments horizontalement */
+    align-items: center; /* Centre les éléments verticalement */
+}
+
+#profilClient {
+    flex: 0 0 30%; /* Peut s'étendre et se rétrécir */
+    margin: 0px 0px; /* Ajustez les marges selon vos besoins */
+    max-width: 30%; /* Limite la largeur à 50% */
+    float: left;
+    position: fixed;
+    top: 47%;
+    left: 20%;
+    transform: translate(0, -50%);
+    transition: transform 0.5s ease;
+}
+
+#profilAstral {
+    text-align: center; /* Centre le texte horizontalement */
+    max-width: 50%; /* Limite la largeur à 50% */
+    margin: 0px 0px; /* Ajustez les marges selon vos besoins */
+    border: 2px solid red;
+    flex: 0 0 30%; /* Ne pas s'étendre et occuper 50% de la largeur */
+    position: fixed;
+    top: 20%;
+    transition: transform 0.5s ease;
+    transform: translateX(0);
+}
+
+#profil.show-profil-client #profilAstral {
+    transform: translateX(50%); /* Ajustez selon vos besoins */
+
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-rows: 100px 100px;
+    grid-template-columns: 250px 250px;
+    grid-row-gap: 15px;
+    grid-column-gap: 65px;
+}
+
+.grid-item {
+    text-align: center;
+    border: black 5px solid;
+}
+
+#bordsArrondis {
+    border-radius: 10px;
+    background: #db9af4;
+    padding: 10px;
+    color: black;
+    text-transform:uppercase;
+    font-weight: bolder; /* Black (Heavy) */
+    font-size: 35px;
+    font-family: 'Kanit';
+}
+
+.bouton-menu {
+    padding: 10px 10px 10px 10px;
+    width: 200px; /* Largeur fixe */
+    height: 200px; /* Hauteur fixe */
+    background: black;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bolder; /* Black (Heavy) */
+    font-size: 21px;
+    border-radius: 10px;
+    font-family: 'Kanit';
+}
+
+.bouton-menu-vide {
+    padding: 10px 10px 10px 10px;
+    width: 200px; /* Largeur fixe */
+    height: 200px; /* Hauteur fixe */
+    text-transform: uppercase;
+    font-weight: bolder; /* Black (Heavy) */
+    color: black;
+    font-size: 21px;
+    border-radius: 10px;
+    font-family: 'Kanit';
+    outline: 2px solid black; 
+    outline-offset: -2px;
+}
+
+.bouton-menu-vide:hover {
+    background: #994ab7; 
+    background: #660099;
+    color: white;
+}
+
+.logo {
+    font-family: 'Karma';
+    font-size: 45px;
+    color: black;
+    font-weight: 900;
+
+}
+
+.no-margin {
+    margin-top: 5px;
 }
