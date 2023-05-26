@@ -1,7 +1,11 @@
+controleur\RetrouverSessionEmployeAction.class
 controleur\ActionServlet.class
 modele\TestUtilisateur.class
+controleur\RetrouverSessionClientAction.class
+controleur\InscriptionClientAction.class
 vue\ProfilUtilisateurSerialisation.class
 controleur\AuthentifierUtilisateurAction.class
 controleur\Action.class
 controleur\TrouverEmployeAction.class
+vue\InscriptionClientSerialisation.class
 vue\Serialisation.class

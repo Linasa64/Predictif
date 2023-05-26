@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PREDICT'IF - Mediums</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Librairie Javascript: jQuery (v3.4.1) -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    </head>
+    <body>
+        <h1>- Nos médiums -<span id="idClient"></span></h1> 
+        <div class="medium1"></div>
+        <div class="medium2"><span id="medium2"></span></div>
+        <div class="medium3"><span id="medium3"></span></div>
+        <div class="medium4"><span id="medium4"></span></div>
+        <div class="medium5"><span id="medium5"></span></div> 
+        <div class="medium6"><span id="medium6"></span></div>
+
+
+        <script>
+
+            function initDonneesPage() {
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'listeMediums'
+                    },
+                    dataType: 'json'
+                })
+                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            //$('#medium1').html(response.medium1.denomination);
+                            let infosSupplementaires = "";
+                            if (response.medium1.type == "Spirite") {
+                                infosSupplementaires = (
+                                        '<p id="support">Support : ' + response.medium1.support + '</p>'
+                                        );
+                            } else if (response.medium1.type == "Astrologue") {
+                                infosSupplementaires = (
+                                        '<p id="formation">Formation : ' + response.medium1.formation + '</p>' +
+                                        '<p id="promotion">Promotion : ' + response.medium1.promotion + '</p>'
+                                        );
+                            }
+                            $('.medium1').append(
+                                    '<p id="denomination">' + response.medium1.denomination + '</p>' +
+                                    '<p id="genre">' + response.medium1.genre + '</p>' +
+                                    '<p id="type">' + response.medium1.type + '</p>' +
+                                    '<p id="presentation">' + response.medium1.presentation + '</p>' +
+                                    infosSupplementaires + '<hr>'
+                                    );
+
+                            infosSupplementaires = "";
+                            if (response.medium2.type == "Spirite") {
+                                infosSupplementaires = (
+                                        '<p id="support">Support : ' + response.medium2.support + '</p>'
+                                        );
+                            } else if (response.medium2.type == "Astrologue") {
+                                infosSupplementaires = (
+                                        '<p id="formation">Formation : ' + response.medium2.formation + '</p>' +
+                                        '<p id="promotion">Promotion : ' + response.medium2.promotion + '</p>'
+                                        );
+                            }
+                            $('.medium2').append(
+                                    '<p id="denomination">' + response.medium2.denomination + '</p>' +
+                                    '<p id="genre">' + response.medium2.genre + '</p>' +
+                                    '<p id="type">' + response.medium2.type + '</p>' +
+                                    '<p id="presentation">' + response.medium2.presentation + '</p>' +
+                                    infosSupplementaires + '<hr>'
+                                    );
+
+                            infosSupplementaires = "";
+                            if (response.medium3.type == "Spirite") {
+                                infosSupplementaires = (
+                                        '<p id="support">Support : ' + response.medium3.support + '</p>'
+                                        );
+                            } else if (response.medium3.type == "Astrologue") {
+                                infosSupplementaires = (
+                                        '<p id="formation">Formation : ' + response.medium3.formation + '</p>' +
+                                        '<p id="promotion">Promotion : ' + response.medium3.promotion + '</p>'
+                                        );
+                            }
+                            $('.medium3').append(
+                                    '<p id="denomination">' + response.medium3.denomination + '</p>' +
+                                    '<p id="genre">' + response.medium3.genre + '</p>' +
+                                    '<p id="type">' + response.medium3.type + '</p>' +
+                                    '<p id="presentation">' + response.medium3.presentation + '</p>' +
+                                    infosSupplementaires + '<hr>'
+                                    );
+
+                            infosSupplementaires = "";
+                            if (response.medium4.type == "Spirite") {
+                                infosSupplementaires = (
+                                        '<p id="support">Support : ' + response.medium4.support + '</p>'
+                                        );
+                            } else if (response.medium4.type == "Astrologue") {
+                                infosSupplementaires = (
+                                        '<p id="formation">Formation : ' + response.medium4.formation + '</p>' +
+                                        '<p id="promotion">Promotion : ' + response.medium4.promotion + '</p>'
+                                        );
+                            }
+                            $('.medium4').append(
+                                    '<p id="denomination">' + response.medium4.denomination + '</p>' +
+                                    '<p id="genre">' + response.medium4.genre + '</p>' +
+                                    '<p id="type">' + response.medium4.type + '</p>' +
+                                    '<p id="presentation">' + response.medium4.presentation + '</p>' +
+                                    infosSupplementaires + '<hr>'
+                                    );
+
+                            infosSupplementaires = "";
+                            if (response.medium5.type == "Spirite") {
+                                infosSupplementaires = (
+                                        '<p id="support">Support : ' + response.medium5.support + '</p>'
+                                        );
+                            } else if (response.medium5.type == "Astrologue") {
+                                infosSupplementaires = (
+                                        '<p id="formation">Formation : ' + response.medium5.formation + '</p>' +
+                                        '<p id="promotion">Promotion : ' + response.medium5.promotion + '</p>'
+                                        );
+                            }
+                            $('.medium5').append(
+                                    '<p id="denomination">' + response.medium5.denomination + '</p>' +
+                                    '<p id="genre">' + response.medium5.genre + '</p>' +
+                                    '<p id="type">' + response.medium5.type + '</p>' +
+                                    '<p id="presentation">' + response.medium5.presentation + '</p>' +
+                                    infosSupplementaires + '<hr>'
+                                    );
+
+                            infosSupplementaires = "";
+                            if (response.medium6.type == "Spirite") {
+                                infosSupplementaires = (
+                                        '<p id="support">Support : ' + response.medium6.support + '</p>'
+                                        );
+                            } else if (response.medium6.type == "Astrologue") {
+                                infosSupplementaires = (
+                                        '<p id="formation">Formation : ' + response.medium6.formation + '</p>' +
+                                        '<p id="promotion">Promotion : ' + response.medium6.promotion + '</p>'
+                                        );
+                            }
+                            $('.medium6').append(
+                                    '<p id="denomination">' + response.medium6.denomination + '</p>' +
+                                    '<p id="genre">' + response.medium6.genre + '</p>' +
+                                    '<p id="type">' + response.medium6.type + '</p>' +
+                                    '<p id="presentation">' + response.medium6.presentation + '</p>' +
+                                    infosSupplementaires + '<hr>'
+                                    );
+
+
+                            console.log('Fin liste des mediums: ', response);
+                        })
+                //var idClient = (new URLSearchParams(window.location.search)).get('id');
+
+
+            }
+
+            $(document).ready(function () {
+                initDonneesPage();
+            }
+            );
+        </script>
+    </body>
+</html>

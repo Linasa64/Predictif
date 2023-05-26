@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import vue.InscriptionClientSerialisation;
+import vue.ListeMediumsSerialisation;
 import vue.ProfilUtilisateurSerialisation;
 
  
@@ -86,12 +87,14 @@ public class ActionServlet extends HttpServlet {
                     s1.serialiser(request, response);
                     System.out.println("Test4");
                     break;
+                    
                 case "employeConnecte" :
                     RetrouverSessionEmployeAction a2 = new RetrouverSessionEmployeAction();
                     a2.executer(request);
                     ProfilUtilisateurSerialisation s2 = new ProfilUtilisateurSerialisation();
                     s2.serialiser(request, response);
                     break;
+                    
                 case "clientConnecte" :
                     System.out.println("Test type client request avant: " + request.getAttribute("type"));
                     RetrouverSessionClientAction a3 = new RetrouverSessionClientAction();
@@ -99,7 +102,6 @@ public class ActionServlet extends HttpServlet {
                     ProfilUtilisateurSerialisation s3 = new ProfilUtilisateurSerialisation();
                     System.out.println("Test type client request apres: " + request.getAttribute("type"));
                     s3.serialiser(request, response);
-                    
                     break;
                     
                 case "profilEmploye" :
@@ -116,6 +118,14 @@ public class ActionServlet extends HttpServlet {
                     System.out.println("Fin de inscription");
                     InscriptionClientSerialisation s5 = new InscriptionClientSerialisation();
                     s5.serialiser(request, response);
+                    break;
+                    
+                case "listeMediums" :
+                    System.out.println("Test liste médiums");
+                    ListerMediumsAction a6 = new ListerMediumsAction();
+                    a6.executer(request);
+                    ListeMediumsSerialisation s6 = new ListeMediumsSerialisation();
+                    s6.serialiser(request, response);
                     break;
                     
                 default :

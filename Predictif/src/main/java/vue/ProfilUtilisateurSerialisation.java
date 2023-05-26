@@ -62,13 +62,14 @@ public class ProfilUtilisateurSerialisation extends Serialisation {
                 containerUser.addProperty("dateNaissance", strDate);
                 containerUser.addProperty("adresse", client.getAdressePostale());
                 containerUser.addProperty("telephone", client.getTelephone());
+                containerUser.addProperty("couleur", client.getCouleur());
+                containerUser.addProperty("animal", client.getAnimal());
+                containerUser.addProperty("zodiaque", client.getSigneZodiaque());
+                containerUser.addProperty("chinois", client.getSigneChinois());
 
                 container.add("utilisateur", containerUser);
             }
         }
-        
-        
-        
         
         System.out.println(container);
         PrintWriter out = this.getWriter(response);

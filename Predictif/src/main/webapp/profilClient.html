@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PREDICT'IF - Profil Client</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Librairie Javascript: jQuery (v3.4.1) -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="styleProfilAstral.css">
+    </head>
+    <body>
+        
+        <nav>
+            <div class="nav-bg"></div>
+            <ul>
+              <li><a href="client.html">Consulter</a></li>
+              <li><a href="javascript:void(0);" id="boutonClic">Voir Profil</a></li>
+              <li><a href="index.html">Déconnexion</a></li>
+              
+            </ul>
+          </nav>
+        
+        <h1>Bonjour <span id="prenomClient"></span></h1>
+        
+        <div id="profil">
+            <div id="profilClient">
+                <h2>Profil : </h2>
+                <p>Nom : <span id="nom"></span></p>
+                <p>Prénom : <span id="prenom"></span></p>
+                <p>Adresse mail : <span id="mail"></span></p>
+                <p><a href="profilAstral.html">Voir son profil astral</a></p>
+            </div>
+
+            <div id="profilAstral">
+                <h2 id="sousTitre">Découvrez votre profil astral</h2>
+                <p>Signe du Zodiaque</p>
+                <p><span id="zodiaque"></span></p>
+                <p>Signe chinois</p>
+                <p><span id="chinois"></span></p>
+                <p>Animal totem</p>
+                <p><span id="animal"></span></p>
+                <p>Couleur porte-bonheur</p>
+                <p><span id="couleur"></span></p>
+            </div>
+            
+        </div>
+        
+        
+        
+        <script>
+
+            function initDonneesPage() {
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'clientConnecte'
+                    },
+                    dataType: 'json'
+                })
+                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            let client = response.utilisateur;
+                            $('#prenomClient').html(client.prenom);
+                            $('#zodiaque').html(client.zodiaque);
+                            $('#chinois').html(client.chinois);
+                            $('#animal').html(client.animal);
+                            $('#couleur').html(client.couleur);
+                            $('#nom').html(client.nom);
+                            $('#prenom').html(client.prenom);
+                            $('#mail').html(client.mail);
+                            console.log('ID du client connecté:', client.id);
+                        })
+                //var idClient = (new URLSearchParams(window.location.search)).get('id');
+                
+            }
+            
+            $(document).ready(function () {
+                initDonneesPage();
+                $('#boutonClic').on( 'click', function () {
+                    console.log("haaaaaaaa");
+                    $("#profilClient").toggle(1000);
+                });
+            });
+        </script>
+    </body>
+</html>
