@@ -5,28 +5,59 @@
         <title>PREDICT'IF - Connexion</title>
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="styleLogin.css">
     </head>
     <body>
 
-        <h1>Connexion</h1>
+        <nav>
+            <div class="nav-bg"></div>
+            <img src="./crystalball.png" id="imgHeader">
+            <a href="index.html" class="logo">PREDICT'IF</a>
+            <ul>
+                <li><a href="client.html" class="bouton-menu-vide">Consulter</a></li>
+                <li><a href="./profilClient.html" id="boutonClic" class="bouton-menu">Profil</a></li>
+                <li><a href="index.html" class="bouton-menu">Déconnexion</a></li>
+            </ul>
+        </nav>
 
-        <!-- Paragraphe avec id="notification" pour les messages de notification -->
-        <p id="notification">Veuillez saisir votre identifiant (adresse mail) et votre mot de passe.</p>
-        <p id="infosConnexion"></p>
-        
-        <!-- Champs et Bouton de Formulaire -->
-        Identifiant: <input type="text" id="champ-login" size="40" />
-        <br/>
-        Mot de passe: <input type="password" id="champ-password" />
-        <br/>
-        <button id="bouton-connexion">Connexion</button>
-        
+        <h1>- CONNEXION -</h1>
+
+        <div class="flex-container">
+
+            <div class="flex-child left">
+                <div class="left"><img src="./logoLogin.png" id="imgLogin"></div>
+            </div>
+
+            <div class="flex-child right">
+                <div class="right">
+                    <!-- Paragraphe avec id="notification" pour les messages de notification -->
+                    <p id="notification"></p>
+                    <p id="infosConnexion"></p>
+
+                    <!-- Champs et Bouton de Formulaire -->
+                    Adresse mail
+                    <br/>
+                    <input type="text" id="champ-login" size="40" />
+                    <br/>
+                    Mot de passe
+                    <br/>
+                    <input type="password" id="champ-password" />
+                    <br/>
+                    <button id="bouton-connexion">SE CONNECTER</button>
+                    <p id="erreur-connexion"></p>
+                </div>
+            </div>
+
+        </div>
+
+
+
         <!-- Lien vers l'accueil -->
         <p><a href="index.html">Retour à la page d'Accueil</a></p>
 
         <script>
-            $(document).ready( function () {
-                $('#bouton-connexion').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
+            $(document).ready(function () {
+                $('#bouton-connexion').on('click', function () { // Fonction appelée lors du clic sur le bouton
 
                     console.log("clic sur le bouton de connexion"); // LOG dans Console Javascript
                     $('#notification').html("Connexion..."); // Message pour le paragraphe de notification
@@ -46,38 +77,37 @@
                         },
                         dataType: 'json'
                     })
-                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
-                        console.log('Response',response); // LOG dans Console Javascript
-                        if (response.connexion) {
-                            $('#notification').html("Connexion OK");  // Message pour le paragraphe de notification
-                            // TODO: afficher les informations du client dans la notification
-                            // Exemple: Connexion de Ada Lovelace (ID 1)
-                            
-                            let utilisateur = response.utilisateur;
-                            $('#infosConnexion').html("Connexion de " + utilisateur.prenom + " " + utilisateur.nom + " (ID " + utilisateur.id + ")");
-                            
-                            console.log("type : ", response.type);
-                            if(response.type=="employe"){
-                                window.location = 'employe.html';
-                            }
-                            else if(response.type=="client"){
-                                window.location = 'profilClient.html';
-                            }
-                            
-                            
-                        }
-                        else {
-                            $('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification
-                            $('#infosConnexion').html("");
-                        }
-                    })
-                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
-                        console.log('Error',error); // LOG dans Console Javascript
-                        alert("Erreur lors de l'appel AJAX");
-                    })
-                    .always( function () { // Fonction toujours appelée
-                        
-                    });
+                            .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                                console.log('Response', response); // LOG dans Console Javascript
+                                if (response.connexion) {
+                                    $('#notification').html("Connexion OK");  // Message pour le paragraphe de notification
+                                    // TODO: afficher les informations du client dans la notification
+                                    // Exemple: Connexion de Ada Lovelace (ID 1)
+
+                                    let utilisateur = response.utilisateur;
+                                    $('#infosConnexion').html("Connexion de " + utilisateur.prenom + " " + utilisateur.nom + " (ID " + utilisateur.id + ")");
+
+                                    console.log("type : ", response.type);
+                                    if (response.type == "employe") {
+                                        window.location = 'employe.html';
+                                    } else if (response.type == "client") {
+                                        window.location = 'profilClient.html';
+                                    }
+
+
+                                } else {
+                                    $('#erreur-connexion').html("Adresse mail ou mot de passe incorrects"); // Message pour le paragraphe de notification
+                                    $('#notification').html("");
+                                    $('#infosConnexion').html("");
+                                }
+                            })
+                            .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                                console.log('Error', error); // LOG dans Console Javascript
+                                alert("Erreur lors de l'appel AJAX");
+                            })
+                            .always(function () { // Fonction toujours appelée
+
+                            });
                 });
             });
         </script>

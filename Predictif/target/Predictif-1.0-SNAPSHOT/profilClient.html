@@ -1,122 +1,125 @@
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <title>PREDICT'IF - Profil Client</title>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <!-- Librairie Javascript: jQuery (v3.4.1) -->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <link rel="stylesheet" href="styleProfilAstral.css">
-            <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
-            <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
-            <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
-        </head>
-        <body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PREDICT'IF - Profil Client</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Librairie Javascript: jQuery (v3.4.1) -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="styleProfilAstral.css">
+        <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
+    </head>
+    <body>
 
-            <nav>
-                <div class="nav-bg"></div>
-                <a href="index.html" class="logo">PREDICT'IF</a>
-                <ul>
-                    <li><a href="client.html" class="bouton-menu-vide">Consulter</a></li>
-                    <li><a href="javascript:void(0);" id="boutonClic" class="bouton-menu">Profil</a></li>
-                    <li><a href="index.html" class="bouton-menu">Déconnexion</a></li>
-                    
-
-                </ul>
-            </nav>
-            <div class="titre">
-                <h1>Bonjour <span id="prenomClient"></span></h1>
-            </div>
-
-            <div id="profil">
-                <div id="profilClient">
-                    <div class="titre">
-                        <h1><b>- Informations -</b><span id="prenomClient"></span></h1>
-                    </div>
-                    <p>Prénom : <span id="prenom"></span></p>
-                    <p>Nom : <span id="nom"></span></p>
-                    <p>Date de naissance : <span id="dateNaissance"></span></p>
-                    <p>Adresse postale : <span id="adresse"></span></p>
-                    <p>Téléphone : <span id="telephone"></span></p>
-                    <p>Adresse mail : <span id="mail"></span></p>
+        <nav>
+            <div class="nav-bg"></div>
+            <img src="./crystalball.png" id="imgHeader">
+            <a href="index.html" class="logo">PREDICT'IF</a>
+            <ul>
+                <li><a href="client.html" class="bouton-menu-vide">Consulter</a></li>
+                <li><a href="javascript:void(0);" id="boutonClic" class="bouton-menu">Profil</a></li>
+                <li><a href="index.html" class="bouton-menu">Déconnexion</a></li>
 
 
+            </ul>
+        </nav>
+        <div class="titre">
+            <h1>Bonjour <span id="prenomClient"></span></h1>
+            <h2>Découvrez votre <span id="style-violet">PROFIL ASTRAL</span></h2>
+        </div>
+
+        <div id="profil">
+            <div id="profilClient">
+                <div class="titre">
+                    <h1><b>- Informations -</b><span id="prenomClient"></span></h1>
                 </div>
+                <p>Prénom : <span id="prenom"></span></p>
+                <p>Nom : <span id="nom"></span></p>
+                <p>Date de naissance : <span id="dateNaissance"></span></p>
+                <p>Adresse postale : <span id="adresse"></span></p>
+                <p>Téléphone : <span id="telephone"></span></p>
+                <p>Adresse mail : <span id="mail"></span></p>
 
-                <div id="profilAstral">
-                    <div class="titre">
-                        <h1><b>- Profil Astral -</b><span id="prenomClient"></span></h1>
-                    </div>
-                    <div class="grid-container">
-                        <div class="grid-item">
-                            Signe du Zodiaque
-                            <p class="no-margin" id="bordsArrondis"><span id="zodiaque"></span></p>
-                        </div>
-                        <div class="grid-item">
-                            Signe chinois
-                            <p class="no-margin" id="bordsArrondis"><span id="chinois"></span></p>
-                        </div>
-                        <div class="grid-item">
-                            Animal totem
-                            <p class="no-margin" id="bordsArrondis"><span id="animal"></span></p>
-                        </div>
-                        <div class="grid-item">
-                            Couleur porte-bonheur
-                            <p class="no-margin" id="bordsArrondis"><span id="couleur"></span></p>
-                        </div>
-
-                    </div>
-
-                </div>
 
             </div>
 
+            <div id="profilAstral">
+                <div class="titre">
+                    <h1><b>- Profil Astral -</b><span id="prenomClient"></span></h1>
+                </div>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        Signe du Zodiaque
+                        <p class="no-margin" id="bordsArrondis"><span id="zodiaque"></span></p>
+                    </div>
+                    <div class="grid-item">
+                        Signe chinois
+                        <p class="no-margin" id="bordsArrondis"><span id="chinois"></span></p>
+                    </div>
+                    <div class="grid-item">
+                        Animal totem
+                        <p class="no-margin" id="bordsArrondis"><span id="animal"></span></p>
+                    </div>
+                    <div class="grid-item">
+                        Couleur porte-bonheur
+                        <p class="no-margin" id="bordsArrondis"><span id="couleur"></span></p>
+                    </div>
+
+                </div>
+
+            </div>
 
 
-            <script>
+        </div>
 
-                function initDonneesPage() {
-                    $.ajax({
-                        url: './ActionServlet',
-                        method: 'POST',
-                        data: {
-                            todo: 'clientConnecte'
-                        },
-                        dataType: 'json'
-                    })
-                            .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
-                                let client = response.utilisateur;
-                                $('#prenomClient').html('<b>' + client.prenom + '</b>');
-                                $('#zodiaque').html(client.zodiaque);
-                                $('#chinois').html(client.chinois);
-                                $('#animal').html(client.animal);
-                                $('#couleur').html(client.couleur);
+        <div id="div-bouton-historique"><button type="button" id="bouton-historique">HISTORIQUE DES CONSULTATIONS</button></div>
+
+        <script>
+
+            function initDonneesPage() {
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'clientConnecte'
+                    },
+                    dataType: 'json'
+                })
+                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            let client = response.utilisateur;
+                            $('#prenomClient').html('<b>' + client.prenom + '</b>');
+                            $('#zodiaque').html(client.zodiaque);
+                            $('#chinois').html(client.chinois);
+                            $('#animal').html(client.animal);
+                            $('#couleur').html(client.couleur);
 
 
-                                $('#nom').html(client.nom);
-                                $('#prenom').html(client.prenom);
-                                $('#mail').html(client.mail);
-                                $('#adresse').html(client.adresse);
-                                $('#telephone').html(client.telephone);
-                                $('#dateNaissance').html(client.dateNaissance);
+                            $('#nom').html(client.nom);
+                            $('#prenom').html(client.prenom);
+                            $('#mail').html(client.mail);
+                            $('#adresse').html(client.adresse);
+                            $('#telephone').html(client.telephone);
+                            $('#dateNaissance').html(client.dateNaissance);
 
-                                console.log('ID du client connecté:', client.id);
-                            })
-                    //var idClient = (new URLSearchParams(window.location.search)).get('id');
+                            console.log('ID du client connecté:', client.id);
+                        })
+                //var idClient = (new URLSearchParams(window.location.search)).get('id');
 
-                }
+            }
 
-                $(document).ready(function () {
-                    initDonneesPage();
-                    $('#boutonClic').on('click', function () {
+            $(document).ready(function () {
+                initDonneesPage();
+                $('#boutonClic').on('click', function () {
 
-                        $("#profil").toggleClass("show-profil-client");
-                        $('#profil').toggleClass('profil-client-visible');
-                        setTimeout(function () {
-                            $("#profilClient").toggle(1000);
-                        }, 500);
+                    $("#profil").toggleClass("show-profil-client");
+                    $('#profil').toggleClass('profil-client-visible');
+                    setTimeout(function () {
+                        $("#profilClient").toggle(1000);
+                    }, 500);
 
-                    });
                 });
-            </script>
-        </body>
-    </html>
+            });
+        </script>
+    </body>
+</html>

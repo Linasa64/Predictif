@@ -1,5 +1,5 @@
 body {
-    margin-top: 70px;
+    margin-top: 5%;
     background: black;
     color: white;
 
@@ -109,12 +109,11 @@ h1 {
     text-align: center; /* Centre le texte horizontalement */
     max-width: 50%; /* Limite la largeur à 50% */
     margin: 0px 0px; /* Ajustez les marges selon vos besoins */
-    border: 2px solid red;
     flex: 0 0 30%; /* Ne pas s'étendre et occuper 50% de la largeur */
-    position: fixed;
-    top: 20%;
     transition: transform 0.5s ease;
     transform: translateX(0);
+    padding : 30px;
+    padding-top: 0px;
 }
 
 #profil.show-profil-client #profilAstral {
@@ -125,7 +124,7 @@ h1 {
 
 .grid-container {
     display: grid;
-    grid-template-rows: 100px 100px;
+    grid-template-rows: 130px 130px;
     grid-template-columns: 250px 250px;
     grid-row-gap: 15px;
     grid-column-gap: 65px;
@@ -139,11 +138,11 @@ h1 {
 #bordsArrondis {
     border-radius: 10px;
     background: #db9af4;
-    padding: 10px;
+    padding: 15px;
     color: black;
     text-transform:uppercase;
     font-weight: bolder; /* Black (Heavy) */
-    font-size: 35px;
+    font-size: 25px;
     font-family: 'Kanit';
 }
 
@@ -185,9 +184,33 @@ h1 {
     font-size: 45px;
     color: black;
     font-weight: 900;
-
+    margin-left: 10px;
 }
 
 .no-margin {
     margin-top: 5px;
+}
+
+#imgHeader {
+    height: 60px;
+    top : -5px;
+    float : left;
+}
+
+#style-violet {
+    color : #db9af4;
+    font-weight : bold;
+}
+
+#div-bouton-historique {
+    text-align : center;
+    margin-top : 10vh;
+}
+#bouton-historique {
+    color : #db9af4;
+    background-color: black;
+    border-color: #db9af4;
+    padding : 5px;
+    font-family: 'Kanit';
+    border-radius : 10px;
 }
