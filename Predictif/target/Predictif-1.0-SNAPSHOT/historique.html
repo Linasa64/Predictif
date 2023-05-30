@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PREDICT'IF - Historique</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Librairie Javascript: jQuery (v3.4.1) -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="styleProfilAstral.css">
+        <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
+    </head>
+    <body>
+
+        <nav>
+            <div class="nav-bg"></div>
+            <img src="./crystalball.png" id="imgHeader">
+            <a href="index.html" class="logo">PREDICT'IF</a>
+            <ul>
+                <li><a href="mediums.html" id="bouton-consulter" class="bouton-menu-vide">Consulter</a></li>
+                <li><a href="javascript:void(0);" id="boutonClic" class="bouton-menu">Profil</a></li>
+                <li><a href="index.html" class="bouton-menu">Déconnexion</a></li>
+
+
+            </ul>
+        </nav>
+
+        <div class="titre">
+            <h2>HISTORIQUE DES CONSULTATIONS DE <span id="style-violet"></span></h2>
+        </div>
+        <div id="historique">
+
+        </div>
+
+        <script>
+
+            function hrefFunction() {
+                window.location = 'mediums.html';
+            }
+
+            function initDonneesPage() {
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'clientConnecte'
+                    },
+                    dataType: 'json'
+                })
+                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            let client = response.utilisateur;
+                            $('#style-violet').html(client.prenom);
+
+                            console.log('ID du client connecté:', client.id);
+                        });
+
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'historique'
+                    },
+                    dataType: 'json'
+                })
+                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            console.log(response);
+                            //let consultation = response.consultation;
+                            $.each(response, function(index, consultation) {
+                            $('#historique').append(
+                                    '<div>' + 
+                                    '<p>' + consultation.typeMedium + '</p>'+
+                                    '<p>' + consultation.medium + '</p>'+
+                                    '<p>' + consultation.date + '</p>'+
+                                    '<p>' + consultation.commentaire + '</p>'+
+                                    '</div>'
+                                    );
+                            });
+
+                        });
+                        //var idClient = (new URLSearchParams(window.location.search)).get('id');
+
+                    }
+
+                    $(document).ready(function () {
+                        initDonneesPage();
+
+
+                    });
+        </script>
+    </body>
+</html>

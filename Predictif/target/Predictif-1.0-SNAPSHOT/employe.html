@@ -29,16 +29,20 @@
         <p>Adresse mail : <span id="mail"></span></p>
         <div id='dispo'>
             <p>Vous n'avez aucune demande en cours</p>
-            <div id="div-bouton-statistiques"><button type="button" id="bouton-statistiques" onclick="hrefFunction()">VOIR LES STATISTIQUES</button></div>
+            <div id="div-bouton-statistiques"><button type="button" id="bouton-statistiques" onclick="versStatistiques()">VOIR LES STATISTIQUES</button></div>
         </div>
         <div id='pasDispo'>
             <p>Vous avez reçu une demande consultation avec <span id="style-violet"></span></p>
             <div id="div-bouton-profil-client"><button type="button" id="bouton-profil-client" onclick="hrefFunction()">VOIR PROFIL CLIENT</button></div>
             <div id="div-bouton-valider"><button type="button" id="bouton-valider" onclick="validerConsultation()">VALIDER LA CONSULTATION</button></div>
-            <div id="div-bouton-statistiques"><button type="button" id="bouton-statistiques" onclick="hrefFunction()">VOIR LES STATISTIQUES</button></div>
+            <div id="div-bouton-statistiques"><button type="button" id="bouton-statistiques" onclick="versStatistiques()">VOIR LES STATISTIQUES</button></div>
         </div>
 
         <script>
+            
+            function versStatistiques() {
+                window.location = 'statistiques.html';
+            }
 
             function validerConsultation() {
                 window.location = 'consultation.html';
@@ -59,11 +63,14 @@
                             $('#prenom').html(employe.prenom);
                             $('#mail').html(employe.mail);
                             $('#idEmploye').html(employe.id);
+                            $('#style-violet').html(employe.denominationConsultationAVenir);
                             if (employe.disponible == true) {
-                                $("#dispo").toggle();
+                            $("#dispo").toggle();
                             } else {
                                 $("#pasDispo").toggle();
                             }
+                            
+                            console.log(response);
 
                             console.log('ID de l\'employé connecté:', employe.id);
                         })

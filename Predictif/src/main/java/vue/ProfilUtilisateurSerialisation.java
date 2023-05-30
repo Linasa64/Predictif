@@ -40,6 +40,11 @@ public class ProfilUtilisateurSerialisation extends Serialisation {
                 containerUser.addProperty("mail", employe.getMail());
                 containerUser.addProperty("genre", employe.getGenre());
                 containerUser.addProperty("disponible", employe.isDisponible());
+                if(!employe.isDisponible()){
+                    containerUser.addProperty("denominationConsultationAVenir", employe.getConsultationEnCours().getMediumConsultation().getDenomination());
+                }else{
+                    containerUser.addProperty("denominationConsultationAVenir", "");
+                }
 
                 container.add("utilisateur", containerUser);
             }
@@ -66,6 +71,7 @@ public class ProfilUtilisateurSerialisation extends Serialisation {
                 containerUser.addProperty("animal", client.getAnimal());
                 containerUser.addProperty("zodiaque", client.getSigneZodiaque());
                 containerUser.addProperty("chinois", client.getSigneChinois());
+                
 
                 container.add("utilisateur", containerUser);
             }

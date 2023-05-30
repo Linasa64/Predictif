@@ -20,7 +20,9 @@ import vue.ConsultationEnCoursSerialisation;
 import vue.DemandeConsultationSerialisation;
 import vue.DemandePredictionsSerialisation;
 import vue.InscriptionClientSerialisation;
+import vue.ListeHistoriqueSerialisation;
 import vue.ListeMediumsSerialisation;
+import vue.ListeStatistiquesSerialisation;
 import vue.ProfilUtilisateurSerialisation;
 import vue.ValidationConsultationSerialisation;
 
@@ -157,6 +159,18 @@ public class ActionServlet extends HttpServlet {
                     a10.executer(request);
                     ValidationConsultationSerialisation s10 = new ValidationConsultationSerialisation();
                     s10.serialiser(request, response);
+                    break;
+                case "historique" :
+                    TrouverHistoriqueAction a11 = new TrouverHistoriqueAction();
+                    a11.executer(request);
+                    ListeHistoriqueSerialisation s11 = new ListeHistoriqueSerialisation();
+                    s11.serialiser(request, response);
+                    break;
+                case "obtentionStatistiques" :
+                    TrouverStatistiquesAction a12 = new TrouverStatistiquesAction();
+                    a12.executer(request);
+                    ListeStatistiquesSerialisation s12 = new ListeStatistiquesSerialisation();
+                    s12.serialiser(request, response);
                     break;
                 default :
                     System.out.println("Paramètre erroné");

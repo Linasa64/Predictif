@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PREDICT'IF - Statistiques</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Librairie Javascript: jQuery (v3.4.1) -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="styleEmploye.css">
+        <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
+    </head>
+    <body>
+
+        <nav>
+            <div class="nav-bg"></div>
+            <img src="./crystalball.png" id="imgHeader">
+            <a href="index.html" class="logo">PREDICT'IF</a>
+            <ul>
+                <li><a href="client.html" class="bouton-menu-vide">Consulter</a></li>
+                <li><a href="./profilClient.html" id="boutonClic" class="bouton-menu">Profil</a></li>
+                <li><a href="index.html" class="bouton-menu">Déconnexion</a></li>
+            </ul>
+        </nav>
+
+        <h1>- STATISTIQUES -</h1> 
+
+        <div id="moyenneH"></div>
+        <div id="moyenneF"></div>
+        <div id="top"></div>
+
+        <script>
+
+            function validerConsultation() {
+                window.location = 'consultation.html';
+            }
+            function initDonneesPage() {
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'employeConnecte'
+                    },
+                    dataType: 'json'
+                })
+                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            let employe = response.utilisateur;
+
+                            $('#nom').html(employe.nom);
+                            $('#prenom').html(employe.prenom);
+                            $('#mail').html(employe.mail);
+                            $('#idEmploye').html(employe.id);
+                            if (employe.disponible == true) {
+                                $("#dispo").toggle();
+                            } else {
+                                $("#pasDispo").toggle();
+                            }
+
+                            console.log('ID de l\'employé connecté:', employe.id);
+                        })
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'obtentionStatistiques'
+                    },
+                    dataType: 'json'
+                })
+                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            $.each(response.top5, function (index, medium) {
+                                $('#top').append(
+                                        '<p>' + medium.denomination + '</p>'
+                                        );
+
+                            });
+                            $('#moyenneH').html(response.moyenneH);
+                            $('#moyenneF').html(response.moyenneF);
+                            console.log(response);
+                        })
+                //var idEmploye = (new URLSearchParams(window.location.search)).get('id');
+
+
+            }
+
+            $(document).ready(function () {
+                initDonneesPage();
+            }
+            );
+        </script>
+    </body>
+</html>
