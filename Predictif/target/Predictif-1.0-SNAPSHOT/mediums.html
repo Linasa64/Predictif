@@ -8,6 +8,7 @@
     </head>
     <body>
         <h1>- Nos médiums -<span id="idClient"></span></h1> 
+        <p id="notification"></p>
         <div class="medium1"></div>
         <div class="medium2"><span id="medium2"></span></div>
         <div class="medium3"><span id="medium3"></span></div>
@@ -17,8 +18,23 @@
 
 
         <script>
+            function initSession() {
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'clientConnecte'
+                    },
+                    dataType: 'json'
+                })
+                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            client = response.utilisateur;
+                            console.log('ID du client connecté:', client.id);
+                        });
+                //var idClient = (new URLSearchParams(window.location.search)).get('id');
 
-            function initDonneesPage() {
+            }
+            function initMediums() {
                 $.ajax({
                     url: './ActionServlet',
                     method: 'POST',
@@ -45,7 +61,8 @@
                                     '<p id="genre">' + response.medium1.genre + '</p>' +
                                     '<p id="type">' + response.medium1.type + '</p>' +
                                     '<p id="presentation">' + response.medium1.presentation + '</p>' +
-                                    infosSupplementaires + '<hr>'
+                                    infosSupplementaires +
+                                    '<button class="bouton" id="' + response.medium1.denomination + '" onClick="boutonDemandeConsultation(this.id)">PRENDRE RDV</button>' + '<hr>'
                                     );
 
                             infosSupplementaires = "";
@@ -64,7 +81,8 @@
                                     '<p id="genre">' + response.medium2.genre + '</p>' +
                                     '<p id="type">' + response.medium2.type + '</p>' +
                                     '<p id="presentation">' + response.medium2.presentation + '</p>' +
-                                    infosSupplementaires + '<hr>'
+                                    infosSupplementaires +
+                                    '<button class="bouton" id="' + response.medium2.denomination + '" onClick="boutonDemandeConsultation(this.id)">PRENDRE RDV</button>' + '<hr>'
                                     );
 
                             infosSupplementaires = "";
@@ -83,7 +101,8 @@
                                     '<p id="genre">' + response.medium3.genre + '</p>' +
                                     '<p id="type">' + response.medium3.type + '</p>' +
                                     '<p id="presentation">' + response.medium3.presentation + '</p>' +
-                                    infosSupplementaires + '<hr>'
+                                    infosSupplementaires +
+                                    '<button class="bouton" id="' + response.medium3.denomination + '" onClick="boutonDemandeConsultation(this.id)">PRENDRE RDV</button>' + '<hr>'
                                     );
 
                             infosSupplementaires = "";
@@ -102,7 +121,8 @@
                                     '<p id="genre">' + response.medium4.genre + '</p>' +
                                     '<p id="type">' + response.medium4.type + '</p>' +
                                     '<p id="presentation">' + response.medium4.presentation + '</p>' +
-                                    infosSupplementaires + '<hr>'
+                                    infosSupplementaires +
+                                    '<button class="bouton" id="' + response.medium4.denomination + '" onClick="boutonDemandeConsultation(this.id)">PRENDRE RDV</button>' + '<hr>'
                                     );
 
                             infosSupplementaires = "";
@@ -121,7 +141,8 @@
                                     '<p id="genre">' + response.medium5.genre + '</p>' +
                                     '<p id="type">' + response.medium5.type + '</p>' +
                                     '<p id="presentation">' + response.medium5.presentation + '</p>' +
-                                    infosSupplementaires + '<hr>'
+                                    infosSupplementaires +
+                                    '<button class="bouton" id="' + response.medium5.denomination + '" onClick="boutonDemandeConsultation(this.id)">PRENDRE RDV</button>' + '<hr>'
                                     );
 
                             infosSupplementaires = "";
@@ -140,7 +161,8 @@
                                     '<p id="genre">' + response.medium6.genre + '</p>' +
                                     '<p id="type">' + response.medium6.type + '</p>' +
                                     '<p id="presentation">' + response.medium6.presentation + '</p>' +
-                                    infosSupplementaires + '<hr>'
+                                    infosSupplementaires +
+                                    '<button class="bouton" id="' + response.medium6.denomination + '" onClick="boutonDemandeConsultation(this.id)">PRENDRE RDV</button>' + '<hr>'
                                     );
 
 
@@ -152,9 +174,41 @@
             }
 
             $(document).ready(function () {
-                initDonneesPage();
+                initSession();
+                initMediums();
+            });
+
+
+            function boutonDemandeConsultation(denomination) {
+                console.log(denomination);
+                $('#notification').html("Demande en cours...");
+                // Appel AJAX
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'demandeConsultation',
+                        denominationMedium: denomination,
+                    },
+                    dataType: 'json'
+                })
+                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            console.log('Response', response); // LOG dans Console Javascript
+                            if (response.reussite) {
+                                $('#notification').html("Demande OK");  // Message pour le paragraphe de notification
+                            } else {
+                                $('#notification').html("Erreur dans la demande");
+                            }
+                        })
+                        .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                            console.log('Error demande consultation', error); // LOG dans Console Javascript
+                            alert("Erreur lors de l'appel AJAX");
+                        })
+                        .always(function () { // Fonction toujours appelée
+
+                        });
             }
-            );
+
         </script>
     </body>
 </html>

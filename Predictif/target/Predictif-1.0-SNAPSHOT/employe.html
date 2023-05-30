@@ -5,16 +5,44 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="styleEmploye.css">
+        <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
     </head>
     <body>
+
+        <nav>
+            <div class="nav-bg"></div>
+            <img src="./crystalball.png" id="imgHeader">
+            <a href="index.html" class="logo">PREDICT'IF</a>
+            <ul>
+                <li><a href="client.html" class="bouton-menu-vide">Consulter</a></li>
+                <li><a href="./profilClient.html" id="boutonClic" class="bouton-menu">Profil</a></li>
+                <li><a href="index.html" class="bouton-menu">Déconnexion</a></li>
+            </ul>
+        </nav>
+
         <h1>Bonjour employé, votre id est <span id="idEmploye"></span></h1> 
-        <h2>Profil : </h2>
         <p>Nom : <span id="nom"></span></p>
         <p>Prénom : <span id="prenom"></span></p>
         <p>Adresse mail : <span id="mail"></span></p>
+        <div id='dispo'>
+            <p>Vous n'avez aucune demande en cours</p>
+            <div id="div-bouton-statistiques"><button type="button" id="bouton-statistiques" onclick="hrefFunction()">VOIR LES STATISTIQUES</button></div>
+        </div>
+        <div id='pasDispo'>
+            <p>Vous avez reçu une demande consultation avec <span id="style-violet"></span></p>
+            <div id="div-bouton-profil-client"><button type="button" id="bouton-profil-client" onclick="hrefFunction()">VOIR PROFIL CLIENT</button></div>
+            <div id="div-bouton-valider"><button type="button" id="bouton-valider" onclick="validerConsultation()">VALIDER LA CONSULTATION</button></div>
+            <div id="div-bouton-statistiques"><button type="button" id="bouton-statistiques" onclick="hrefFunction()">VOIR LES STATISTIQUES</button></div>
+        </div>
 
         <script>
 
+            function validerConsultation() {
+                window.location = 'consultation.html';
+            }
             function initDonneesPage() {
                 $.ajax({
                     url: './ActionServlet',
@@ -31,13 +59,19 @@
                             $('#prenom').html(employe.prenom);
                             $('#mail').html(employe.mail);
                             $('#idEmploye').html(employe.id);
+                            if (employe.disponible == true) {
+                                $("#dispo").toggle();
+                            } else {
+                                $("#pasDispo").toggle();
+                            }
+
                             console.log('ID de l\'employé connecté:', employe.id);
                         })
                 //var idEmploye = (new URLSearchParams(window.location.search)).get('id');
-                
+
 
             }
-            
+
             $(document).ready(function () {
                 initDonneesPage();
             }

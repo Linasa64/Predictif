@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PREDICT'IF - Consultation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Librairie Javascript: jQuery (v3.4.1) -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="styleEmploye.css">
+        <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
+    </head>
+    <body>
+
+        <nav>
+            <div class="nav-bg"></div>
+            <img src="./crystalball.png" id="imgHeader">
+            <a href="index.html" class="logo">PREDICT'IF</a>
+            <ul>
+                <li><a href="client.html" class="bouton-menu-vide">Consulter</a></li>
+                <li><a href="./profilClient.html" id="boutonClic" class="bouton-menu">Profil</a></li>
+                <li><a href="index.html" class="bouton-menu">Déconnexion</a></li>
+            </ul>
+        </nav>
+
+        <h1>Bonjour employé, votre id est <span id="idEmploye"></span></h1> 
+        <p>Nom : <span id="nom"></span></p>
+        <p>Prénom : <span id="prenom"></span></p>
+
+        <div id="gauche">
+            <div id="medium"></div>
+            <div id="client"></div>
+        </div>
+
+        <div id="droite">
+            <div id="predictions">
+                <select name="amour" id="select-amour">
+                    <option value ="1">1</option>
+                    <option value ="2">2</option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                </select>
+                <select name="sante" id="select-sante">
+                    <option value ="1">1</option>
+                    <option value ="2">2</option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                </select>
+                <select name="travail" id="select-travail">
+                    <option value ="1">1</option>
+                    <option value ="2">2</option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                </select>
+                <button id="bouton-predictions">Obtenir prédictions</button>
+            </div>
+            <div id="horoscope">
+                Amour :
+                <p id="champ-amour"></p>
+                Santé : 
+                <p id="champ-sante"></p>
+                Travail :
+                <p id="champ-travail"></p>
+            </div>
+            <div id="commentaire">
+                Laissez un commentaire : 
+                <input type="text" id="saisie-commentaire">
+                <button id="bouton-valider">Terminer la consultation</button>
+            </div>
+        </div>
+
+        <script>
+            function initDonneesPage() {
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'employeConnecte'
+                    },
+                    dataType: 'json'
+                })
+                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            let employe = response.utilisateur;
+                            $('#nom').html(employe.nom);
+                            $('#prenom').html(employe.prenom);
+                            $('#mail').html(employe.mail);
+                            $('#idEmploye').html(employe.id);
+                            if (employe.disponible == true) {
+                                $("#dispo").toggle();
+                            } else {
+                                $("#pasDispo").toggle();
+                            }
+
+                            console.log('ID de l\'employé connecté:', employe.id);
+                        })
+
+
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'consultationEnCours'
+                    },
+                    dataType: 'json'
+                })
+                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            console.log(response);
+                            $('#client').html(response.client.id);
+                            $('#medium').html(response.medium.id);
+                        })
+            }
+
+            $(document).ready(function () {
+                initDonneesPage();
+                $('#bouton-predictions').on('click', function () {
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'demandePredictions',
+                            amour: $('#select-amour').val(),
+                            sante: $('#select-sante').val(),
+                            travail: $('#select-travail').val()
+                        },
+                        dataType: 'json'
+                    })
+                            .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                                console.log(response);
+                                $('#champ-amour').html(response.amour);
+                                $('#champ-sante').html(response.sante);
+                                $('#champ-travail').html(response.travail);
+                            });
+                }
+                );
+                $('#bouton-valider').on('click', function () {
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'validationConsultation',
+                            commentaire:$('#saisie-commentaire').val()
+                        },
+                        dataType: 'json'
+                    })
+                            .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                                console.log(response);
+                                window.location = 'employe.html';
+                            });
+                }
+                );
+            });
+        </script>
+    </body>
+</html>

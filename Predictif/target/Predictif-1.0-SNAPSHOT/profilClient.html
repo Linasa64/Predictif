@@ -73,9 +73,13 @@
 
         </div>
 
-        <div id="div-bouton-historique"><button type="button" id="bouton-historique">HISTORIQUE DES CONSULTATIONS</button></div>
+        <div id="div-bouton-historique"><button type="button" id="bouton-historique" onclick="hrefFunction()">HISTORIQUE DES CONSULTATIONS</button></div>
 
         <script>
+            
+            function hrefFunction(){
+                window.location = 'mediums.html';
+            }
 
             function initDonneesPage() {
                 $.ajax({
@@ -103,7 +107,7 @@
                             $('#dateNaissance').html(client.dateNaissance);
 
                             console.log('ID du client connecté:', client.id);
-                        })
+                        });
                 //var idClient = (new URLSearchParams(window.location.search)).get('id');
 
             }

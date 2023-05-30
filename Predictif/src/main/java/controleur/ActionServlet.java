@@ -16,9 +16,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import vue.ConsultationEnCoursSerialisation;
+import vue.DemandeConsultationSerialisation;
+import vue.DemandePredictionsSerialisation;
 import vue.InscriptionClientSerialisation;
 import vue.ListeMediumsSerialisation;
 import vue.ProfilUtilisateurSerialisation;
+import vue.ValidationConsultationSerialisation;
 
  
 
@@ -128,6 +132,32 @@ public class ActionServlet extends HttpServlet {
                     s6.serialiser(request, response);
                     break;
                     
+                case "demandeConsultation" :
+                    System.out.println("Test demande consultation");
+                    DemandeConsultationAction a7 = new DemandeConsultationAction();
+                    a7.executer(request);
+                    DemandeConsultationSerialisation s7 = new DemandeConsultationSerialisation();
+                    s7.serialiser(request, response);
+                    break;
+                case "consultationEnCours" :
+                    System.out.println("Test cours consultation");
+                    TrouverConsultationAction a8 = new TrouverConsultationAction();
+                    a8.executer(request);
+                    ConsultationEnCoursSerialisation s8 = new ConsultationEnCoursSerialisation();
+                    s8.serialiser(request, response);
+                    break;
+                case "demandePredictions" :
+                    DemanderPredictionsAction a9 = new DemanderPredictionsAction();
+                    a9.executer(request);
+                    DemandePredictionsSerialisation s9 = new DemandePredictionsSerialisation();
+                    s9.serialiser(request, response);
+                    break;
+                case "validationConsultation" :
+                    ValiderConsultationAction a10 = new ValiderConsultationAction();
+                    a10.executer(request);
+                    ValidationConsultationSerialisation s10 = new ValidationConsultationSerialisation();
+                    s10.serialiser(request, response);
+                    break;
                 default :
                     System.out.println("Paramètre erroné");
                     

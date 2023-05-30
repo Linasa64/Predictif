@@ -36,6 +36,7 @@ public class ListeMediumsSerialisation extends Serialisation {
         for(Medium m : listeMediums){
             compteur++;
             JsonObject containerMedium = new JsonObject();
+            containerMedium.addProperty("id", m.getId());
             containerMedium.addProperty("type", m.getClass().getSimpleName());
             containerMedium.addProperty("denomination", m.getDenomination());
             containerMedium.addProperty("genre", m.getGenre());
