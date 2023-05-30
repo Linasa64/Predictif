@@ -5,17 +5,35 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="styleHeader.css">
+        <link rel="stylesheet" href="styleMediums.css">
+        <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
     </head>
     <body>
+        
+        <nav>
+            <div class="nav-bg"></div>
+            <img src="./crystalball.png" id="imgHeader">
+            <a href="index.html" class="logo">PREDICT'IF</a>
+            <ul>
+                <li><a href="client.html" class="bouton-menu-vide">Consulter</a></li>
+                <li><a href="./profilClient.html" id="boutonClic" class="bouton-menu">Profil</a></li>
+                <li><a href="index.html" class="bouton-menu">Déconnexion</a></li>
+            </ul>
+        </nav>
+        
         <h1>- Nos médiums -<span id="idClient"></span></h1> 
         <p id="notification"></p>
-        <div class="medium1"></div>
-        <div class="medium2"></div>
-        <div class="medium3"></div>
-        <div class="medium4"></div>
-        <div class="medium5"></div> 
-        <div class="medium6"></div>
-
+        <div class ="grid-container">
+            <div class ="grid-item" id="medium1"></div>
+            <div class ="grid-item" id="medium2"></div>
+            <div class ="grid-item" id="medium3"></div>
+            <div class ="grid-item" id="medium4"></div>
+            <div class ="grid-item" id="medium5"></div> 
+            <div class ="grid-item" id="medium6"></div>
+        </div>
 
         <script>
             function initSession() {
@@ -51,21 +69,20 @@
                             let infosSupplementaires = "";
                                     if (medium.type == "Spirite") {
                             infosSupplementaires = (
-                                    '<p id="support">Support : ' + medium.support + '</p>'
+                                    '<p id="support"><b>Support :</b> <i> ' + medium.support + '</i></p>'
                                     );
                             } else if (medium.type == "Astrologue") {
                             infosSupplementaires = (
-                                    '<p id="formation">Formation : ' + medium.formation + '</p>' +
-                                    '<p id="promotion">Promotion : ' + medium.promotion + '</p>'
+                                    '<p id="formation"><b>Formation :</b> <i> ' + medium.formation + '</i></p>' +
+                                    '<p id="promotion"><b>Promotion :</b> <i> ' + medium.promotion + '</i></p>'
                                     );
                             }
-                            $('.medium'+compteur).append(
+                            $('#medium'+compteur).append(
                                     '<p id="denomination">' + medium.denomination + '</p>' +
-                                    '<p id="genre">' + medium.genre + '</p>' +
                                     '<p id="type">' + medium.type + '</p>' +
                                     '<p id="presentation">' + medium.presentation + '</p>' +
                                     infosSupplementaires +
-                                    '<button class="bouton" id="' + medium.denomination + '" onClick="boutonDemandeConsultation(this.id)">PRENDRE RDV</button>' + '<hr>'
+                                    '<div class="text-center"><button class="bouton" id="' + medium.denomination + '" onClick="boutonDemandeConsultation(this.id)">Prendre RDV</button></div>'
                                     );
                             });
                             console.log('Fin liste des mediums: ', response);

@@ -1,0 +1,68 @@
+.titre{
+    text-align: center;
+}
+
+h1 {
+    font-size: 30px; /* Modifie la taille de la police */
+    font-weight: normal;
+    text-align: center; /* Centre le texte horizontalement */
+    text-transform:uppercase;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  color : black;
+  position : relative;
+  text-align: center;
+  column-gap: 4%;
+  grid-gap: 4%;
+  padding : 4%;
+  margin-top : -4%;
+  align-items: center;
+  justify-content: center;
+}
+.grid-item {
+  background-color: #db9af4;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  font-size: 20px;
+  text-align: center;
+  padding : 10px;
+  border-radius : 10px;
+  height: 33vh;
+}
+
+#denomination {
+    margin-top: -7px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#type {
+    margin-top: -25px;
+    font-weight: bold;
+    text-transform: uppercase
+}
+
+#support, #formation, #promotion {
+    font-size: 15px;
+}
+
+.bouton {
+    color: white;
+    background-color: black;
+    border-color: black;
+    padding: 5px;
+    font-family: 'Kanit';
+    border-radius: 10px;
+    width: 15vw;
+    height: 40px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.text-center {
+  text-align: center;
+  display: block;
+}
