@@ -13,9 +13,11 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import metier.modele.Astrologue;
 import metier.modele.Client;
 import metier.modele.Employe;
 import metier.modele.Medium;
+import metier.modele.Spirite;
 import modele.TestUtilisateur;
 
 /**
@@ -37,6 +39,15 @@ public class ConsultationEnCoursSerialisation extends Serialisation {
         containerMedium.addProperty("genre", m.getGenre());
         containerMedium.addProperty("presentation", m.getPresentation());
 
+        if (m instanceof Spirite) {
+            Spirite s = (Spirite) m;
+            containerMedium.addProperty("support", s.getSupport());
+        } else if (m instanceof Astrologue) {
+            Astrologue a = (Astrologue) m;
+            containerMedium.addProperty("formation", a.getFormation());
+            containerMedium.addProperty("promotion", a.getPromotion());
+        }
+
         Client client = (Client) request.getAttribute("clientConsultation");
         JsonObject containerUser = new JsonObject();
         containerUser.addProperty("id", client.getId());
@@ -52,7 +63,7 @@ public class ConsultationEnCoursSerialisation extends Serialisation {
         containerUser.addProperty("animal", client.getAnimal());
         containerUser.addProperty("zodiaque", client.getSigneZodiaque());
         containerUser.addProperty("chinois", client.getSigneChinois());
-        
+
         container.add("client", containerUser);
         container.add("medium", containerMedium);
 

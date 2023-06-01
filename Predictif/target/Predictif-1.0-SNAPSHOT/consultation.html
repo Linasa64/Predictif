@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <link rel="stylesheet" href="styleEmploye.css">
+        <link rel="stylesheet" href="styleHeader.css">
         <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
@@ -17,19 +17,33 @@
             <img src="./crystalball.png" id="imgHeader">
             <a href="index.html" class="logo">PREDICT'IF</a>
             <ul>
-                <li><a href="client.html" class="bouton-menu-vide">Consulter</a></li>
-                <li><a href="./profilClient.html" id="boutonClic" class="bouton-menu">Profil</a></li>
+                <li><a href="./employe.html" id="boutonClic" class="bouton-menu">Mon profil</a></li>
                 <li><a href="index.html" class="bouton-menu">Déconnexion</a></li>
             </ul>
         </nav>
 
-        <h1>Bonjour employé, votre id est <span id="idEmploye"></span></h1> 
+        <h1>- CONSULTATION EN COURS -</h1> 
         <p>Nom : <span id="nom"></span></p>
         <p>Prénom : <span id="prenom"></span></p>
 
         <div id="gauche">
-            <div id="medium"></div>
-            <div id="client"></div>
+            <p>VOUS INCARNEZ LE MEDIUM</p>
+            <div id="medium">
+                <div id='denomination'></div>
+                <p id='type'></p>
+                <p id='description'></p>
+                <p id='infosComplementaires'></p>
+            </div>
+            
+            <p>POUR LE CLIENT</p>
+            <div id="client">
+                <div id="div-nomClient"><p id='nomClient'></p></div>
+                <div id="div-dateNaissance"><p id='dateNaissance'></p></div>
+                <div id="div-zodiaque"><p id='zodiaque'></p></div>
+                <div id="div-chinois"><p id='chinois'></p></div>
+                <div id="div-animal"><p id='animal'></p></div>
+                <div id="div-couleur"><p id='couleur'></p></div>
+            </div>
         </div>
 
         <div id="droite">
@@ -105,9 +119,31 @@
                 })
                         .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
                             console.log(response);
-                            $('#client').html(response.client.id);
-                            $('#medium').html(response.medium.id);
-                        })
+                            $('#denomination').html(response.medium.denomination);
+                            $('#type').html(response.medium.type);
+                            $('#description').html(response.medium.presentation);
+                            $('#support').html(response.medium.type);
+                            
+                            let infosSupplementaires = "";
+                            if (response.medium.type === "Spirite") {
+                                infosSupplementaires = (
+                                    '<p id="support"><b>Support :</b> <i> ' + medium.support + '</i></p>'
+                                );
+                            } else if (response.medium.type === "Astrologue") {
+                            infosSupplementaires = (
+                                    '<p id="formation"><b>Formation :</b> <i> ' + response.medium.formation + '</i></p>' +
+                                    '<p id="promotion"><b>Promotion :</b> <i> ' + response.medium.promotion + '</i></p>'
+                                    );
+                            }
+                            $('#infosComplementaires').html(infosSupplementaires);
+                            
+                            $('#nomClient').html(response.client.prenom + " " + response.client.prenom);
+                            $('#dateNaissance').html(response.client.dateNaissance);
+                            $('#zodiaque').html("<b>Signe du zodiaque : </b>" + response.client.zodiaque);
+                            $('#chinois').html("<b>Signe chinois : </b>" + response.client.chinois);
+                            $('#animal').html("<b>Animal totem : </b>" + response.client.animal);
+                            $('#couleur').html("<b>Couleur porte-bonheur : </b>" + response.client.couleur);
+                        });
             }
 
             $(document).ready(function () {
