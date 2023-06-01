@@ -3,11 +3,54 @@
     <head>
         <title>PREDICT'IF - Accueil</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="styleHeader.css">
+        <link rel="stylesheet" href="styleIndex.css">
+        <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
     </head>
     <body>
-        <h1>TD DASI - Initiation Web</h1>
-        <p>Ce TD vous initie</p>
-        <p><a href="login.html">Se connecter</a></p>
-        <p><a href="inscription.html">S'inscrire</a></p>
+
+        <nav>
+            <div class="nav-bg"></div>
+            <img src="./crystalball.png" id="imgHeader">
+            <a href="index.html" class="logo">PREDICT'IF</a>
+            <ul>
+                <li><a href="./login.html" id="boutonClic" class="bouton-menu">CONNEXION</a></li>
+                <li><a href="./inscription.html" id="boutonClic" class="bouton-menu">INSCRIPTION</a></li>
+
+            </ul>
+        </nav>
+
+        <div class="flex-container">
+
+            <div class="flex-child presentationGauche">               
+                <div id="middleText">
+                    <p>
+                        Sur PREDICT'IF, vous trouverez des réponses à vos questions les plus 
+                        profondes. Nous sommes là pour vous aider à découvrir votre destinée
+                        et à vous guider sur le chemin de la vie.<br><br>
+                    
+                        Que vous cherchiez des réponses à des questions sur votre avenir 
+                        amoureux, votre carrière, ou votre santé, nos voyants professionnels
+                        sont prêts à vous aider. Ils ont une grande expérience dans l'art de
+                        la cartomancie, l'astrologie et la cristallomancie et sont là pour 
+                        vous aider à découvrir votre véritable potentiel !<br><br>
+                    
+                        Nous croyons fermement que chacun de nous possède une destinée 
+                        unique et que nous sommes tous capables de réaliser nos rêves. 
+                        Nous sommes là pour vous aider à dévoiler votre avenir et à 
+                        comprendre comment vous pouvez tirer le meilleur parti de votre vie.
+                    </p> 
+                </div>            
+            </div>
+
+            <div class="flex-child imageDroite">
+                <div id="logoImage"><img src="./logoLogin.png" id="imgLogin"></div>
+            </div>
+
+        </div>
+
     </body>
 </html>

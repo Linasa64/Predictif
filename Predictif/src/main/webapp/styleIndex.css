@@ -1,0 +1,25 @@
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+    border: 2px;
+    text-align : center;
+} 
+
+.flex-child.presentationGauche {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding : 50px;
+}
+
+.flex-child.imageDroite {
+    margin-top: 15vh;
+    font-size: 15px;
+}
+
+#imgLogin {
+    height : 25vw;
+}
