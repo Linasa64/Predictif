@@ -1,0 +1,85 @@
+h1 {
+    font-size: 30px; /* Modifie la taille de la police */
+    font-weight: normal;
+    text-align: center; /* Centre le texte horizontalement */
+    text-transform:uppercase
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+    border: 2px;
+} 
+
+.flex-child.left {
+    text-align : center;
+}
+
+.flex-child.right {
+    text-align : center;
+    margin-top: 5vh;
+    font-size: 15px;
+    justify-content: space-between;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.flex-child.right p{
+    text-align : left;
+}
+
+#imgLogin {
+    height : 50vh;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.right p{
+    font-size: 10px; 
+    margin-bottom: -3px;
+    text-align: left;
+    margin-left: 0.5vw;
+}
+
+.champSaisie {
+    width : 100%;
+    height : 20px;
+    border-radius : 10px;
+    margin-top : 5px;
+}
+
+#nomPrenom{
+    display : flex;
+    justify-content: space-between;
+    align-items: center; /* Aligne les éléments verticalement */
+    gap: 2%;
+}
+
+#prenom, #nom {
+    flex: 1;
+    text-align: center;
+}
+
+#champ-prenom, #champ-nom {
+    width : 100%;
+}
+
+#bouton-inscription {
+    color : black;
+    background-color: #db9af4;
+    border-color: #db9af4;
+    padding : 5px;
+    font-family: 'Kanit';
+    border-radius : 10px;
+    width : 100%;
+    height : 40px;
+    margin-top : 20px;
+    font-weight: bold;
+}
+
+#erreur-connexion {
+    color : red;
+}
