@@ -6,6 +6,7 @@
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <link rel="stylesheet" href="styleHeader.css">
+        <link rel="stylesheet" href="styleConsultation.css">
         <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
@@ -23,65 +24,92 @@
         </nav>
 
         <h1>- CONSULTATION EN COURS -</h1> 
-        <p>Nom : <span id="nom"></span></p>
-        <p>Prénom : <span id="prenom"></span></p>
 
-        <div id="gauche">
-            <p>VOUS INCARNEZ LE MEDIUM</p>
-            <div id="medium">
-                <div id='denomination'></div>
-                <p id='type'></p>
-                <p id='description'></p>
-                <p id='infosComplementaires'></p>
+        <div class="flex-container">
+
+            <div id="gauche">
+                <p>VOUS INCARNEZ LE MEDIUM</p>
+                <div id="medium">
+                    <div id='denomination'></div>
+                    <p id='type'></p>
+                    <p id='description'></p>
+                    <p id='infosComplementaires'></p>
+                </div>
+
+                <p>POUR LE CLIENT</p>
+                <div id="client">
+                    <div id="div-nomClient"><p id='nomClient'></p></div>
+                    <div id="div-dateNaissance"><p id='dateNaissance'></p></div>
+                    <div id="div-zodiaque"><p id='zodiaque'></p></div>
+                    <div id="div-chinois"><p id='chinois'></p></div>
+                    <div id="div-animal"><p id='animal'></p></div>
+                    <div id="div-couleur"><p id='couleur'></p></div>
+                </div>
             </div>
-            
-            <p>POUR LE CLIENT</p>
-            <div id="client">
-                <div id="div-nomClient"><p id='nomClient'></p></div>
-                <div id="div-dateNaissance"><p id='dateNaissance'></p></div>
-                <div id="div-zodiaque"><p id='zodiaque'></p></div>
-                <div id="div-chinois"><p id='chinois'></p></div>
-                <div id="div-animal"><p id='animal'></p></div>
-                <div id="div-couleur"><p id='couleur'></p></div>
+
+            <div id="droite">
+                <div id="libellePred">
+                    <p>AMOUR</p>
+                    <p>SANTE</p>
+                    <p>TRAVAIL</p>
+                </div>
+                <div id="predictions">
+                    <div id="pred-amour">
+                        <select name="amour" id="select-amour">
+                            <option value ="1">1</option>
+                            <option value ="2">2</option>
+                            <option value ="3">3</option>
+                            <option value ="4">4</option>
+                        </select>
+                    </div>
+                    <div id="pred-sante">
+                        <select name="sante" id="select-sante">
+                            <option value ="1">1</option>
+                            <option value ="2">2</option>
+                            <option value ="3">3</option>
+                            <option value ="4">4</option>
+                        </select>
+                    </div>
+                    <div id="pred-travail">
+                        <select name="travail" id="select-travail">
+                            <option value ="1">1</option>
+                            <option value ="2">2</option>
+                            <option value ="3">3</option>
+                            <option value ="4">4</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="valider-predictions">
+                    <button id="bouton-predictions">OBTENIR PREDICTIONS</button>
+                </div>
+                
+                <div id="horoscope">
+                    <div id="horoscope-amour">
+                        <p id="horoscope-libelle">Amour&nbsp; : </p>
+                        <p id="champ-amour"></p>
+                    </div>
+                    <div id="horoscope-sante">
+                        <p id="horoscope-libelle">Santé&nbsp;&nbsp; : </p>
+                        <p id="champ-sante"></p>
+                    </div>
+                    <div id="horoscope-travail">
+                        <p id="horoscope-libelle">Travail : </p>
+                        <p id="champ-travail"></p>
+                    </div>
+                    
+                </div>
+                <div id="commentaire">
+                    <p> Laissez un commentaire :</p> 
+                    <textarea  id="saisie-commentaire" placeholder="Ajoutez des précisions par rapport au client ou à la séance..."></textarea>
+                    <div id="div-bouton-terminer">
+                        <button id="bouton-valider">TERMINER LA CONSULTATION</button>
+                    </div>
+                </div>
             </div>
+
         </div>
 
-        <div id="droite">
-            <div id="predictions">
-                <select name="amour" id="select-amour">
-                    <option value ="1">1</option>
-                    <option value ="2">2</option>
-                    <option value ="3">3</option>
-                    <option value ="4">4</option>
-                </select>
-                <select name="sante" id="select-sante">
-                    <option value ="1">1</option>
-                    <option value ="2">2</option>
-                    <option value ="3">3</option>
-                    <option value ="4">4</option>
-                </select>
-                <select name="travail" id="select-travail">
-                    <option value ="1">1</option>
-                    <option value ="2">2</option>
-                    <option value ="3">3</option>
-                    <option value ="4">4</option>
-                </select>
-                <button id="bouton-predictions">Obtenir prédictions</button>
-            </div>
-            <div id="horoscope">
-                Amour :
-                <p id="champ-amour"></p>
-                Santé : 
-                <p id="champ-sante"></p>
-                Travail :
-                <p id="champ-travail"></p>
-            </div>
-            <div id="commentaire">
-                Laissez un commentaire : 
-                <input type="text" id="saisie-commentaire">
-                <button id="bouton-valider">Terminer la consultation</button>
-            </div>
-        </div>
 
         <script>
             function initDonneesPage() {
@@ -123,20 +151,20 @@
                             $('#type').html(response.medium.type);
                             $('#description').html(response.medium.presentation);
                             $('#support').html(response.medium.type);
-                            
+
                             let infosSupplementaires = "";
                             if (response.medium.type === "Spirite") {
                                 infosSupplementaires = (
-                                    '<p id="support"><b>Support :</b> <i> ' + medium.support + '</i></p>'
-                                );
+                                        '<p id="support"><b>Support :</b> <i> ' + medium.support + '</i></p>'
+                                        );
                             } else if (response.medium.type === "Astrologue") {
-                            infosSupplementaires = (
-                                    '<p id="formation"><b>Formation :</b> <i> ' + response.medium.formation + '</i></p>' +
-                                    '<p id="promotion"><b>Promotion :</b> <i> ' + response.medium.promotion + '</i></p>'
-                                    );
+                                infosSupplementaires = (
+                                        '<p id="formation"><b>Formation :</b> <i> ' + response.medium.formation + '</i></p>' +
+                                        '<p id="promotion"><b>Promotion :</b> <i> ' + response.medium.promotion + '</i></p>'
+                                        );
                             }
                             $('#infosComplementaires').html(infosSupplementaires);
-                            
+
                             $('#nomClient').html(response.client.prenom + " " + response.client.prenom);
                             $('#dateNaissance').html(response.client.dateNaissance);
                             $('#zodiaque').html("<b>Signe du zodiaque : </b>" + response.client.zodiaque);
@@ -174,7 +202,7 @@
                         method: 'POST',
                         data: {
                             todo: 'validationConsultation',
-                            commentaire:$('#saisie-commentaire').val()
+                            commentaire: $('#saisie-commentaire').val()
                         },
                         dataType: 'json'
                     })

@@ -1,0 +1,152 @@
+h1 {
+    font-size: 30px; /* Modifie la taille de la police */
+    font-weight: normal;
+    text-align: center; /* Centre le texte horizontalement */
+    text-transform:uppercase
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+#gauche, #droite {
+    flex : 1;
+    border: 2px;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+} 
+
+
+
+#medium, #client {
+    background-color: #db9af4;
+    width: 70%;
+    color : black;
+    margin-left: 15%;
+    border-radius : 10px;
+}
+
+#client, #medium {
+    font-size: 17px;
+}
+
+#denomination, #nomClient {
+    font-size: 30px;
+}
+
+#type {
+    text-transform: uppercase;
+    margin-top: -5px;
+}
+
+#dateNaissance{
+    margin-top: -30px;
+}
+
+#predictions{
+    display : flex;
+    justify-content: space-between;
+    align-items: center; /* Aligne les éléments verticalement */
+    width: 80%;
+    margin-left: 10%;
+}
+
+#libellePred {
+    display : flex;
+    font-size: 15px;
+    margin-bottom: -5px;
+    width: 80%;
+    margin-left: 10%;
+}
+
+#libellePred p{
+    flex: 1;
+}
+
+
+#pred-amour, #pred-sante, #pred-travail {
+    flex : 1;
+    width: 30%;
+    width: 120px;
+    height: 34px;
+    border-radius: 3px;
+}
+
+
+select{
+    background: white;
+    width: 100px;
+    height: 34px;
+    border-radius : 20px;
+    text-align: center;
+}
+
+#bouton-predictions {
+    color : black;
+    background-color: #db9af4;
+    border-color: #db9af4;
+    padding : 5px;
+    font-family: 'Kanit';
+    border-radius : 10px;
+    width : 50%;
+    height : 40px;
+    margin-top : 30px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#horoscope {
+    font-size: 15px;
+    width: 75%;
+    margin-left: 15%;
+}
+
+#horoscope-amour, #horoscope-sante, #horoscope-travail {
+    display : flex; 
+    width: 90%;
+}
+
+#champ-amour, #champ-sante, #champ-travail {
+    flex : 1; 
+    text-align: justify;
+    margin-left: 10px;
+}
+
+#horoscope-libelle {
+    color : #db9af4;
+    text-align: right;
+}
+
+#commentaire p{
+    text-align: left;
+    width: 80%;
+    margin-left: 15%;
+    font-size: 15px;
+    margin-bottom: -2px;
+}
+
+#saisie-commentaire {
+    width: 70%;
+    height : 100px;
+    border-radius : 10px;
+    text-align: left;
+    font-family: 'Kanit';
+}
+
+#bouton-valider {
+    color : black;
+    background-color: #db9af4;
+    border-color: #db9af4;
+    padding : 5px;
+    font-family: 'Kanit';
+    border-radius : 10px;
+    width : 70%;
+    height : 40px;
+    margin-top : 30px;
+    font-weight: bold;
+    font-size: 20px;
+}
