@@ -183,8 +183,8 @@ public class Service {
     }
 
     public static void initialiserEmployes() {
-        //Employe e1 = new Employe("FAVRO", "Samuel", "0642049305", "sfavro@mail", "motDePasse", "H");
-        Employe e1 = new Employe("FAVRO", "Samuel", "0642049305", "a", "a", "H");
+        Employe e1 = new Employe("FAVRO", "Samuel", "0642049305", "sfavro@mail", "motDePasse", "H");
+        //Employe e1 = new Employe("FAVRO", "Samuel", "0642049305", "a", "a", "H");
 
         Employe e2 = new Employe("AGA", "Max", "1010101010", "maga@mail", "motDePasse", "H");
 
