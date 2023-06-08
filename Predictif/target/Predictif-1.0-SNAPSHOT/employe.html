@@ -6,6 +6,7 @@
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <link rel="stylesheet" href="styleEmploye.css">
+        <link rel="stylesheet" href="styleHeader.css">
         <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
@@ -21,23 +22,24 @@
             </ul>
         </nav>
 
-        <h1>Bonjour employé, votre id est <span id="idEmploye"></span></h1> 
-        <p>Nom : <span id="nom"></span></p>
-        <p>Prénom : <span id="prenom"></span></p>
-        <p>Adresse mail : <span id="mail"></span></p>
-        <div id='dispo'>
-            <p>Vous n'avez aucune demande en cours</p>
-            <div id="div-bouton-statistiques"><button type="button" id="bouton-statistiques" onclick="versStatistiques()">VOIR LES STATISTIQUES</button></div>
-        </div>
-        <div id='pasDispo'>
-            <p>Vous avez reçu une demande consultation avec <span id="style-violet"></span></p>
-            <div id="div-bouton-profil-client"><button type="button" id="bouton-profil-client" onclick="hrefFunction()">VOIR PROFIL CLIENT</button></div>
-            <div id="div-bouton-valider"><button type="button" id="bouton-valider" onclick="validerConsultation()">VALIDER LA CONSULTATION</button></div>
+        <div class="parent_div">
+            <h1>Bonjour <b><span id="prenomEmploye"></span></b></h1> 
+
+            <div id='dispo'>
+                <p>Vous n'avez aucune consultation en attente ou en cours</p>
+            </div>
+
+            <div id='pasDispo'>
+                <p>Vous avez reçu une demande consultation avec <span id="style-violet"></span></p>
+                <div id="div-bouton-profil-client"><button type="button" id="bouton-profil-client" onclick="hrefFunction()">VOIR PROFIL CLIENT</button></div>
+                <div id="div-bouton-valider"><button type="button" id="bouton-valider" onclick="validerConsultation()">VALIDER LA CONSULTATION</button></div>
+            </div>
             <div id="div-bouton-statistiques"><button type="button" id="bouton-statistiques" onclick="versStatistiques()">VOIR LES STATISTIQUES</button></div>
         </div>
 
+
         <script>
-            
+
             function versStatistiques() {
                 window.location = 'statistiques.html';
             }
@@ -58,16 +60,16 @@
                             let employe = response.utilisateur;
 
                             $('#nom').html(employe.nom);
-                            $('#prenom').html(employe.prenom);
+                            $('#prenomEmploye').html(employe.prenom);
                             $('#mail').html(employe.mail);
                             $('#idEmploye').html(employe.id);
                             $('#style-violet').html(employe.denominationConsultationAVenir);
                             if (employe.disponible == true) {
-                            $("#dispo").toggle();
+                                $("#dispo").toggle();
                             } else {
                                 $("#pasDispo").toggle();
                             }
-                            
+
                             console.log(response);
 
                             console.log('ID de l\'employé connecté:', employe.id);

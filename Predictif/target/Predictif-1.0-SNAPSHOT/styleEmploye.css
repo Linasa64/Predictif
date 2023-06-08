@@ -115,9 +115,33 @@ h1 {
     font-size: 30px; /* Modifie la taille de la police */
     font-weight: normal;
     text-align: center; /* Centre le texte horizontalement */
-    text-transform:uppercase
+    text-transform:uppercase;
+    margin-bottom: 10vh;
 }
 
 #pasDispo, #dispo {
     display : none;
+}
+
+#bouton-statistiques, #bouton-profil-client, #bouton-valider {
+    color : #db9af4;
+    background-color: black;
+    border-color: #db9af4;
+    padding : 5px;
+    font-family: 'Kanit';
+    border-radius : 10px;
+    margin-top: 5vh;
+}
+
+#bouton-valider{
+    color : black;
+    background-color: #db9af4;
+}
+
+#bouton-statistiques{
+    margin-top: 20vh;
+}
+
+.parent_div{
+    text-align: center;
 }
