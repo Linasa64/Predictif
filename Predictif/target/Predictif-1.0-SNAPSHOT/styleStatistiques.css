@@ -1,0 +1,112 @@
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+    border: 2px;
+    text-align : center;
+} 
+
+.flex-child.diagramme {
+    height: 40vh;
+    text-align: center;
+    padding-left: 20%;
+    padding-right : 20%;
+    padding-top : 20vh;
+}
+
+.flex-child.top {
+    margin-top: 5vh;
+    font-size: 15px;
+    padding-right: 10vw;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.podium__item {
+  width: 200px;
+}
+
+.podium__rank {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  color: #fff;
+}
+
+.podium__name {
+  text-align: center;
+  padding: 0 .5rem;
+}
+
+.podium__number {
+  width: 27px;
+  height: 75px;
+}
+
+.podium .first {
+  min-height: 300px;
+  background: #f1be49;
+background: 
+  linear-gradient(333deg, 
+  rgba(255,172,37,1) 0%, 
+  rgba(254,207,51,1) 13%, 
+  rgba(254,224,51,1) 53%, 
+  rgba(255,172,37,1) 100%);
+}
+
+.podium .second {
+  min-height: 200px;
+  background: #4bb1fc;
+}
+
+.podium .third {
+  min-height: 100px;
+  background: #cb236e;
+}
+
+#p4, #p5 {
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  position: relative;
+  border : 1px solid white;
+}
+
+#p4:before,
+#p5:before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+#p4:before {
+  content: "4";
+  background-color: #cd7f32;
+}
+
+#p5:before {
+  content: "5";
+  background-color: #c0c0c0;
+}
+

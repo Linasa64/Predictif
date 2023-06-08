@@ -6,9 +6,12 @@
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <link rel="stylesheet" href="styleEmploye.css">
+        <link rel="stylesheet" href="styleStatistiques.css">
         <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     </head>
     <body>
 
@@ -25,67 +28,117 @@
 
         <h1>- STATISTIQUES -</h1> 
 
-        <div id="moyenneH"></div>
-        <div id="moyenneF"></div>
-        <div id="top"></div>
+        <div class="flex-container">
+            <div class="flex-child diagramme">
+                <canvas id="diagrammeCamembert"></canvas>
+            </div>
+            <div class="flex-child top">
 
-        <script>
+                <div class="container podium">
+                    <div class="podium__item">
+                        <p class="podium__name" id="p2"></p>
+                        <div class="podium__rank second">2</div>
+                    </div>
+                    <div class="podium__item">
+                        <p class="podium__name" id="p1"></p>
+                        <div class="podium__rank first">
+                            <svg class="podium__number" viewBox="0 0 27.476 75.03" xmlns="http://www.w3.org/2000/svg">
+                            <g transform="matrix(1, 0, 0, 1, 214.957736, -43.117417)">
+                            <path class="st8" d="M -198.928 43.419 C -200.528 47.919 -203.528 51.819 -207.828 55.219 C -210.528 57.319 -213.028 58.819 -215.428 60.019 L -215.428 72.819 C -210.328 70.619 -205.628 67.819 -201.628 64.119 L -201.628 117.219 L -187.528 117.219 L -187.528 43.419 L -198.928 43.419 L -198.928 43.419 Z" style="fill: #000;"/>
+                            </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="podium__item">
+                        <p class="podium__name" id="p3"></p>
+                        <div class="podium__rank third">3</div>
+                    </div>
+                </div>
+                <div id="p4"></div>
+                <div id="p5"></div>
+            </div>
+        </div>
 
-            function validerConsultation() {
-                window.location = 'consultation.html';
-            }
-            function initDonneesPage() {
-                $.ajax({
-                    url: './ActionServlet',
-                    method: 'POST',
-                    data: {
-                        todo: 'employeConnecte'
-                    },
-                    dataType: 'json'
-                })
-                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
-                            let employe = response.utilisateur;
+            <script>
 
-                            $('#nom').html(employe.nom);
-                            $('#prenom').html(employe.prenom);
-                            $('#mail').html(employe.mail);
-                            $('#idEmploye').html(employe.id);
-                            if (employe.disponible == true) {
-                                $("#dispo").toggle();
-                            } else {
-                                $("#pasDispo").toggle();
-                            }
+                function validerConsultation() {
+                    window.location = 'consultation.html';
+                }
+                function initDonneesPage() {
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'employeConnecte'
+                        },
+                        dataType: 'json'
+                    })
+                            .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                                let employe = response.utilisateur;
 
-                            console.log('ID de l\'employé connecté:', employe.id);
-                        })
-                $.ajax({
-                    url: './ActionServlet',
-                    method: 'POST',
-                    data: {
-                        todo: 'obtentionStatistiques'
-                    },
-                    dataType: 'json'
-                })
-                        .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
-                            $.each(response.top5, function (index, medium) {
-                                $('#top').append(
-                                        '<p>' + medium.denomination + '</p>'
-                                        );
+                                $('#nom').html(employe.nom);
+                                $('#prenom').html(employe.prenom);
+                                $('#mail').html(employe.mail);
+                                $('#idEmploye').html(employe.id);
+                                if (employe.disponible == true) {
+                                    $("#dispo").toggle();
+                                } else {
+                                    $("#pasDispo").toggle();
+                                }
 
-                            });
-                            $('#moyenneH').html(response.moyenneH);
-                            $('#moyenneF').html(response.moyenneF);
-                            console.log(response);
-                        })
-                //var idEmploye = (new URLSearchParams(window.location.search)).get('id');
+                                console.log('ID de l\'employé connecté:', employe.id);
+                            })
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'obtentionStatistiques'
+                        },
+                        dataType: 'json'
+                    })
+                            .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                                let cpt = 0;
+                                $.each(response.top5, function (index, medium) {
+                                    cpt++;
+                                    $('#p' + cpt).append(
+                                            '<p>' + medium.denomination + '</p>'
+                                            );
+                                });
+                                var mH = response.moyenneH;
+                                var mF = response.moyenneF;
+
+                                const total = mH + mF;
+                                const defaultLabels = total === 0 ? ["Pas de données"] : ["Hommes", "Femmes"];
+                                const defaultData = total === 0 ? [1] : [mH, mF];
+
+                                const backgroundColor = total === 0 ? ["#AAAAAA"] : ["#cb236e", "#f1be49"];
+
+                                // Créer le diagramme camembert
+                                const ctx = document.getElementById("diagrammeCamembert").getContext("2d");
+                                const chart = new Chart(ctx, {
+                                    type: "pie",
+                                    data: {
+                                        labels: defaultLabels,
+                                        datasets: [
+                                            {
+                                                data: defaultData,
+                                                backgroundColor: backgroundColor,
+                                            },
+                                        ],
+                                    },
+                                });
+                                console.log(response);
+                            })
+                    //var idEmploye = (new URLSearchParams(window.location.search)).get('id');
 
 
-            }
+                }
 
-            $(document).ready(function () {
-                initDonneesPage();
-            }
-            );
-        </script>
+                $(document).ready(function () {
+                    initDonneesPage();
+                }
+                );
+
+            </script>
     </body>
 </html>
