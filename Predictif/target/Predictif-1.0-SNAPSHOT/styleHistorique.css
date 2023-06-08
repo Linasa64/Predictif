@@ -1,3 +1,10 @@
+h1 {
+    font-size: 30px; /* Modifie la taille de la police */
+    font-weight: normal;
+    text-align: center; /* Centre le texte horizontalement */
+    text-transform:uppercase
+}
+
 #historique {
   display: flex;
   flex-direction: column;

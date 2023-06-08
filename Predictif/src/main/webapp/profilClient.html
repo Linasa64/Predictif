@@ -6,6 +6,7 @@
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <link rel="stylesheet" href="styleProfilAstral.css">
+        <link rel="stylesheet" href="styleHeader.css">
         <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
@@ -40,8 +41,6 @@
                 <p>Adresse postale : <span id="adresse"></span></p>
                 <p>Téléphone : <span id="telephone"></span></p>
                 <p>Adresse mail : <span id="mail"></span></p>
-
-
             </div>
 
             <div id="profilAstral">
@@ -119,7 +118,7 @@
                     $("#profil").toggleClass("show-profil-client");
                     $('#profil').toggleClass('profil-client-visible');
                     setTimeout(function () {
-                        $("#profilClient").toggle(1000);
+                        $("#profilClient").toggle(10);
                     }, 500);
 
                 });
