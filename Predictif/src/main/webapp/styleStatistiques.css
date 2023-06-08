@@ -13,11 +13,11 @@
     text-align: center;
     padding-left: 20%;
     padding-right : 20%;
-    padding-top : 20vh;
+    padding-top : 10vh;
 }
 
 .flex-child.top {
-    margin-top: 5vh;
+    margin-top: -5vh;
     font-size: 15px;
     padding-right: 10vw;
 }

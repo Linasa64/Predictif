@@ -6,6 +6,7 @@
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <link rel="stylesheet" href="styleProfilAstral.css">
+        <link rel="stylesheet" href="styleHistorique.css">
         <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
@@ -65,27 +66,31 @@
                         .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
                             console.log(response);
                             //let consultation = response.consultation;
-                            $.each(response, function(index, consultation) {
-                            $('#historique').append(
-                                    '<div>' + 
-                                    '<p>' + consultation.typeMedium + '</p>'+
-                                    '<p>' + consultation.medium + '</p>'+
-                                    '<p>' + consultation.date + '</p>'+
-                                    '<p>' + consultation.commentaire + '</p>'+
-                                    '</div>'
-                                    );
+                            $.each(response, function (index, consultation) {
+                                $('#historique').append(
+                                        '<div class="consultation">' +
+                                        '<div id="gauche">' +
+                                        '<p id="medium">' + consultation.medium + '</p>' +
+                                        '<p id="type">' + consultation.typeMedium + '</p>' +
+                                        '<p id="date">' + consultation.date + '</p>' +
+                                        '</div>' +
+                                        '<div id="droite">' +
+                                        '<p id="commentaire"><i>"' + consultation.commentaire + '"</i></p>' +
+                                        '</div>' +
+                                        '</div>'
+                                        );
                             });
 
                         });
-                        //var idClient = (new URLSearchParams(window.location.search)).get('id');
+                //var idClient = (new URLSearchParams(window.location.search)).get('id');
 
-                    }
+            }
 
-                    $(document).ready(function () {
-                        initDonneesPage();
+            $(document).ready(function () {
+                initDonneesPage();
 
 
-                    });
+            });
         </script>
     </body>
 </html>

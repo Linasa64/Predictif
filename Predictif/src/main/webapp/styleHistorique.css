@@ -1,0 +1,45 @@
+#historique {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.consultation {
+  width: 500px;
+  margin: 10px;
+  text-align: center;
+  border : 3px solid #db9af4;
+  display : flex;
+  border-radius: 5px;
+}
+
+#gauche,
+#droite {
+  flex : 1;
+}
+
+#droite{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#medium{
+    font-size: 25px;
+}
+
+#gauche {
+    background-color: #db9af4;
+    color : black;
+    border-radius: 2px;
+}
+
+#type,
+#medium,
+#date,
+#commentaire {
+  margin: 0;
+  padding: 0;
+}
